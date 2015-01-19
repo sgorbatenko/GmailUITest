@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-
+@Deprecated
 public final class Environment
 {
     private static final String URI_JMX_CONNECTION = "service:jmx:rmi:///jndi/rmi://localhost:8083/jmxrmi";
@@ -24,7 +24,7 @@ public final class Environment
     // private static final String CHROME_DRIVER_BINARY = "res" + File.separator;
 
     // Set default value for App URL, can be overridden by setting in resource file on disk
-    private static String _ApplicationUrl = "http://finance.i.ua"; //
+    private static String _ApplicationUrl = ""; //
 
 
     private static String _SeleniumUrl = "http://localhost:4444/wd/hub";

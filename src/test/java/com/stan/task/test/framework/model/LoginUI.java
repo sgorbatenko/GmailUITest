@@ -1,6 +1,8 @@
 
 package com.stan.task.test.framework.model;
 
+import org.testng.Assert;
+
 import com.stan.task.test.framework.ClientBrowser;
 import com.stan.task.test.framework.page.LoginPage;
 
@@ -39,10 +41,6 @@ public class LoginUI // extends ApplicationUI
         getPage().getEmailTextBox().click();
         getPage().getEmailTextBox().sendKeys(userName); // replace(userName);
         // getParentClientBrowser().waitForTextPresentInElement(By.name(USERNAME_INPUT_NAME),
-        // userName);
-        // clickOnLogo();
-        // Testing.sleep(200);
-
     }
 
     public void setPassword(String pwd)
@@ -70,10 +68,32 @@ public class LoginUI // extends ApplicationUI
         getPage().getLoginButton().click();
     }
 
-    public void login()
+    public void login(String email, String password)
     {
-        setEmailname("");
-        setPassword("");
+        setEmailname(email);
+        setPassword(password);
         clickLoginButton();
     }
+
+    public void verifyUserIsLoggedIn()
+    {
+        Assert.assertTrue(
+            _parentClientBrowser.getApplicationUI().getPage().getAccount().isDisplayed(),
+            "User Is Logged In");
+    }
+
+    public LoginUI logout()
+    {
+        _parentClientBrowser.getApplicationUI().getPage().getAccount().click();
+        _parentClientBrowser.getApplicationUI().getPage().getSignOutBtn().click();
+        return this;
+    }
+
+    public void verifyIsUserLogedOut()
+    {
+        Assert.assertTrue(
+            _loginPage.getPasswordTextBox().isDisplayed(),
+            "User is logged out by Password TextBox being visible");
+    }
+
 }

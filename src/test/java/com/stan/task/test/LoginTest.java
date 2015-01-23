@@ -1,33 +1,49 @@
 
 package com.stan.task.test;
 
+import java.util.concurrent.TimeUnit;
+
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import com.stan.task.test.framework.model.LoginUI;
+import com.stan.task.test.framework.utils.Wait;
 
 public class LoginTest extends AbstractSeleniumTest
 {
-    protected static final int BUY_COLUMN_INDEX = 1;
-    protected static final int SELL_COLUMN_INDEX = 2;
     private LoginUI _loginUI;
 
     @BeforeClass
-    public void setup()
+    public void setup() throws InterruptedException
     {
+        getClientBrowser().getSeleniumWebDriver().manage().timeouts()
+            .implicitlyWait(Wait.TIMEOUT_MIN_WAIT, TimeUnit.SECONDS);
         _loginUI = getClientBrowser().getLoginUI();
-        // _ui = new LoginUI(getClientBrowser());
-        // _ui.open();
-        // _ui.selectCurrencyInGrid(Currency.EUR);
-        // _currencyTable = _ui.getPage().getMainGrid().getCurrencyDataTable();
-        // _sumTable = _ui.getPage().getMainGrid().getSumDataTable();
+    }
+
+    @AfterClass
+    public void teardown()
+    {
+        // / TODO: Refactor using Element class instead of WebElement
+        // if (getClientBrowser().getApplicationUI().isUserLoggedIn())
+        // _loginUI.logout();
+        super.teardown();
     }
 
     @Test
     void testLogin()
     {
-        _loginUI.login();
+        _loginUI.login("usr7778899@gmail.com", "testPass456!#");
+        _loginUI.verifyUserIsLoggedIn();
+    }
 
-        // TODO: Verification should be added
+    @Test
+    void testSignOut()
+    {
+        if (!getClientBrowser().getApplicationUI().isUserLoggedIn())
+            _loginUI.login("usr7778899@gmail.com", "testPass456!#");
+        _loginUI.logout();
+        _loginUI.verifyIsUserLogedOut();
     }
 }

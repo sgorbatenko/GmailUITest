@@ -28,7 +28,7 @@ public abstract class AbstractSeleniumTest
         // _applicationUI = newApplicationUI(BrowserName.fromString(browser),
         // version, screenWidth, screenHeight);
         _browser = getNewBrowserInstance(BrowserName.fromString("firefox"),
-            "34", 200, 200);
+            "34", 0, 0);
         // _applicationUI = newApplicationUI(BrowserName.fromString("chrome"),
         // "26", screenWidth, screenHeight);
         // _applicationUI = newApplicationUI(BrowserName.fromString("ie"), "9",

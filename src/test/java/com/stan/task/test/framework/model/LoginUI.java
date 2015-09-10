@@ -4,6 +4,7 @@ package com.stan.task.test.framework.model;
 import org.testng.Assert;
 
 import com.stan.task.test.framework.ClientBrowser;
+import com.stan.task.test.framework.page.ApplicationPage;
 import com.stan.task.test.framework.page.LoginPage;
 
 public class LoginUI // extends ApplicationUI
@@ -39,7 +40,7 @@ public class LoginUI // extends ApplicationUI
         // getParentClientBrowser().waitForElementPresentByCss("input[name='" +
         // USERNAME_INPUT_NAME + "']", Wait.TIMEOUT_MIN_WAIT);
         getPage().getEmailTextBox().click();
-        getPage().getEmailTextBox().sendKeys(userName); // replace(userName);
+        getPage().getEmailTextBox().append(userName); // replace(userName);
         // getParentClientBrowser().waitForTextPresentInElement(By.name(USERNAME_INPUT_NAME),
     }
 
@@ -48,7 +49,7 @@ public class LoginUI // extends ApplicationUI
         // getParentClientBrowser().waitForElementPresentByCss("input[name='" +
         // PASSWORD_INPUT_NAME + "']", Wait.TIMEOUT_MIN_WAIT);
         getPage().getPasswordTextBox().click();
-        getPage().getPasswordTextBox().sendKeys(pwd); // replace(pwd);
+        getPage().getPasswordTextBox().append(pwd); // replace(pwd);
         // getParentClientBrowser().waitForTextPresentInElement(By.name(PASSWORD_INPUT_NAME),
         // pwd);
         // clickOnLogo();
@@ -68,9 +69,15 @@ public class LoginUI // extends ApplicationUI
         getPage().getLoginButton().click();
     }
 
+    public void clickNextButton()
+    {
+        getPage().getNextButton().click();
+    }
+
     public void login(String email, String password)
     {
         setEmailname(email);
+        clickNextButton();
         setPassword(password);
         clickLoginButton();
     }
@@ -78,21 +85,26 @@ public class LoginUI // extends ApplicationUI
     public void verifyUserIsLoggedIn()
     {
         Assert.assertTrue(
-            _parentClientBrowser.getApplicationUI().getPage().getAccount().isDisplayed(),
+            getApplicationHomePage().getGoogleAccountMenu().isDisplayed(),
             "User Is Logged In");
+    }
+
+    public ApplicationPage getApplicationHomePage()
+    {
+        return _parentClientBrowser.getApplicationUI().getPage();
     }
 
     public LoginUI logout()
     {
-        _parentClientBrowser.getApplicationUI().getPage().getAccount().click();
-        _parentClientBrowser.getApplicationUI().getPage().getSignOutBtn().click();
+        getApplicationHomePage().getGoogleAccountMenu().click();
+        getApplicationHomePage().getSignOutBtn().click();
         return this;
     }
 
     public void verifyIsUserLogedOut()
     {
         Assert.assertTrue(
-            _loginPage.getPasswordTextBox().isDisplayed(),
+            _loginPage.getPasswordTextBox().isVisible(),
             "User is logged out by Password TextBox being visible");
     }
 

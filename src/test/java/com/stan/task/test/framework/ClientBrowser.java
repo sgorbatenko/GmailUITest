@@ -333,7 +333,7 @@ public class ClientBrowser // extends AbstractClientBrowserChild
         WAIT_FOR_INSANELY_LONG_OPERATION,
 
         /**
-         * Wait time for an entity to close while checking for confirmation prompt if an editing entity
+         * Wait time for an entity to close while checking for `irmation prompt if an editing entity
          */
         WAIT_FOR_ENTITY_CLOSE,
 

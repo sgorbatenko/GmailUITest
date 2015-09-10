@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
@@ -226,8 +227,8 @@ public class Element // extends AbstractPageModelItem implements ElementCommon
             }
 
             return webElement.isDisplayed()
-                            && webElement.getLocation().getX() > 0
-                            && webElement.getLocation().getY() > 0;
+                && webElement.getLocation().getX() > 0
+                && webElement.getLocation().getY() > 0;
         }
         catch (NoSuchControlException e)
         {
@@ -275,10 +276,28 @@ public class Element // extends AbstractPageModelItem implements ElementCommon
         return text;
     }
 
-    // public void click()
-    // {
-    // clickImpl();
-    // }
+
+    public String getElementID()
+    {
+        return getAttributeValue(ID_ATTRIBUTE);
+    }
+
+    public String getAttributeValue(String attributeName)
+    {
+        return getSeleniumWebElement(true).getAttribute(attributeName);
+    }
+
+    protected Object executeScript(String script, Object... args)
+    {
+        return ((JavascriptExecutor) getSeleniumWebDriver()).executeScript(script, args);
+    }
+
+    public void click()
+    {
+        // use getSeleniumWebElement() here
+        _seleniumWebElement.click();
+    }
+
     //
     // /**
     // * Implementor method to click the element
@@ -439,7 +458,7 @@ public class Element // extends AbstractPageModelItem implements ElementCommon
             // We are setting timeout to 0 to get fast response on our
             // StaleElementReferenceException check.
             getSeleniumWebDriver().manage().timeouts()
-            .implicitlyWait(0, TimeUnit.SECONDS);
+                .implicitlyWait(0, TimeUnit.SECONDS);
             element.getTagName();
 
         }
@@ -450,9 +469,9 @@ public class Element // extends AbstractPageModelItem implements ElementCommon
         finally
         {
             getSeleniumWebDriver()
-            .manage()
-            .timeouts()
-            .implicitlyWait(IMPLICIT_WAIT, TimeUnit.SECONDS);
+                .manage()
+                .timeouts()
+                .implicitlyWait(IMPLICIT_WAIT, TimeUnit.SECONDS);
         }
         return false;
     }

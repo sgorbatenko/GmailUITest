@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import com.stan.task.test.framework.ClientBrowser;
+import com.stan.task.test.framework.control.TextBox;
 import com.stan.task.test.framework.pagefactory.ExtendedPageFactory;
 import com.stan.task.test.framework.pagefactory.TestName;
 
@@ -19,15 +20,23 @@ public final class LoginPage implements AbstractPage
 
     @TestName(testName = "Email")
     @FindBy(name = "Email")
-    private WebElement _emailTextBox;
+    private TextBox _emailTextBox;
 
     @TestName(testName = "Password")
     @FindBy(name = "Passwd")
-    private WebElement _passwordTextBox;
+    private TextBox _passwordTextBox;
+
+    @TestName(testName = "Next")
+    @FindBy(name = "signIn")
+    private WebElement _nextButton;
 
     @TestName(testName = "Login")
-    @FindBy(name = "signIn")
-    private WebElement _loginButton;
+    @FindBy(id = "signIn")
+    private WebElement _signInButton;
+
+//    @TestName(testName = "Next")
+//    @FindBy(name = "next")
+//    private WebElement _loginButton;
 
     // @TestName(testName = "Create new account")
     // @FindBy(linkText = "Create new account")
@@ -53,7 +62,7 @@ public final class LoginPage implements AbstractPage
      * 
      * @return the textFieldUsername
      */
-    public WebElement getEmailTextBox()
+    public TextBox getEmailTextBox()
     {
         return _emailTextBox;
     }
@@ -63,7 +72,7 @@ public final class LoginPage implements AbstractPage
      * 
      * @return the textFieldPassword
      */
-    public WebElement getPasswordTextBox()
+    public TextBox getPasswordTextBox()
     {
         return _passwordTextBox;
     }
@@ -75,8 +84,23 @@ public final class LoginPage implements AbstractPage
      */
     public WebElement getLoginButton()
     {
-        return _loginButton;
+        return _signInButton;
     }
+
+    public WebElement getNextButton()
+    {
+        return _nextButton;
+    }
+
+//    /**
+//     * Gets the login button.
+//     * 
+//     * @return the btnLogin
+//     */
+//    public WebElement getNextButton()
+//    {
+//        return _nextButton;
+//    }
     //
     // /**
     // * Gets the creates the account link.

@@ -49,7 +49,7 @@ public class ApplicationUI
      */
     public boolean isUserLoggedIn()
     {
-        return getPage().getAccount().isDisplayed();
+        return getPage().getGoogleAccountMenu().isDisplayed();
 
     }
 }

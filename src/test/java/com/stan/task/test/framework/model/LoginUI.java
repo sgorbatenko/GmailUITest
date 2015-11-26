@@ -7,7 +7,7 @@ import com.stan.task.test.framework.ClientBrowser;
 import com.stan.task.test.framework.page.ApplicationPage;
 import com.stan.task.test.framework.page.LoginPage;
 
-public class LoginUI // extends ApplicationUI
+public class LoginUI implements UiObject // extends ApplicationUI
 {
     private final ClientBrowser _parentClientBrowser;
 

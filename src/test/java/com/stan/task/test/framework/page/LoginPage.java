@@ -12,7 +12,7 @@ import com.stan.task.test.framework.pagefactory.TestName;
 /**
  * The LoginPage Class.
  */
-public final class LoginPage implements AbstractPage
+public final class LoginPage implements Page
 {
     // @TestName(testName = "Logo image")
     // @FindBy(css = "#fp-login-form #fp-login-form-body label.x-component")

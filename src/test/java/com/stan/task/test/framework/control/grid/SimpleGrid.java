@@ -12,7 +12,7 @@ import com.stan.task.test.framework.control.ElementLocator;
 import com.stan.task.test.framework.control.HtmlDoc;
 import com.stan.task.test.framework.datastructures.DataTable;
 import com.stan.task.test.framework.exception.ControlLayerException;
-import com.stan.task.test.framework.page.AbstractPage;
+import com.stan.task.test.framework.page.Page;
 import com.stan.task.test.framework.utils.ScrollUtils;
 import com.stan.task.test.framework.utils.WebElementHelper;
 
@@ -49,17 +49,17 @@ public class SimpleGrid extends Element // implements Grid
 
     protected static final String COLUMN_HEADERS_TEXT_CSS = ".x-column-header-text";
 
-    public SimpleGrid(AbstractPage parentBrowserItem, ElementLocator elementLocator, String fieldControlName)
+    public SimpleGrid(Page parentBrowserItem, ElementLocator elementLocator, String fieldControlName)
     {
         super(parentBrowserItem, elementLocator, fieldControlName);
     }
 
-    public SimpleGrid(AbstractPage parentBrowserItem, List<ElementLocator> elementLocators, String fieldControlName)
+    public SimpleGrid(Page parentBrowserItem, List<ElementLocator> elementLocators, String fieldControlName)
     {
         super(parentBrowserItem, elementLocators, fieldControlName);
     }
 
-    public SimpleGrid(AbstractPage parentBrowserItem, WebElement element, String controlName)
+    public SimpleGrid(Page parentBrowserItem, WebElement element, String controlName)
     {
         super(parentBrowserItem, element, controlName);
     }

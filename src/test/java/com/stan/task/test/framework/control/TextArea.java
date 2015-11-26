@@ -8,28 +8,28 @@ import org.openqa.selenium.WebElement;
 
 import com.stan.task.test.framework.page.Page;
 
-public class TextBox extends Element // AbstractTextField
+public class TextArea extends Element // AbstractTextField
 {
     private static final String LABEL_TAG_NAME = "label";
-    private static final String INPUT_TAG_NAME = "input";
+    private static final String TEXTAREA_TAG_NAME = "textarea";
     public static final String ID_ATTRIBUTE = "id";
     public static final String CLASS_ATTRIBUTE = "class";
     private static final String INVALID_CLASS_SUBSTRING = "x-form-invalid-field";
     private static final String REQUIRED_CLASS_SUBSTRING = "x-form-required-field";
 
-    public TextBox(Page parentBrowserItem,
+    public TextArea(Page parentBrowserItem,
         ElementLocator elementLocator, String fieldControlName)
     {
         super(parentBrowserItem, elementLocator, fieldControlName);
     }
 
-    public TextBox(Page parentBrowserItem,
+    public TextArea(Page parentBrowserItem,
         List<ElementLocator> elementLocators, String fieldControlName)
     {
         super(parentBrowserItem, elementLocators, fieldControlName);
     }
 
-    public TextBox(Page parentBrowserItem, WebElement element,
+    public TextArea(Page parentBrowserItem, WebElement element,
         String controlName)
     {
         super(parentBrowserItem, element, controlName);
@@ -74,7 +74,7 @@ public class TextBox extends Element // AbstractTextField
 
     public String getText()
     {
-        String text = getInputElement().getAttribute(VALUE_ATTRIBUTE);
+        String text = getTextAreaElement().getAttribute(VALUE_ATTRIBUTE);
         return text;
     }
 
@@ -82,20 +82,20 @@ public class TextBox extends Element // AbstractTextField
     {
         // TestLogger.writeStep("Clear " + getDescription());
 
-        getInputElement().clear();
+        getTextAreaElement().clear();
     }
 
-    protected WebElement getInputElement()
+    protected WebElement getTextAreaElement()
     {
         WebElement currentElement = getSeleniumWebElement(true);
         WebElement inputElement = null;
-        if (INPUT_TAG_NAME.equals(currentElement.getTagName()))
+        if (TEXTAREA_TAG_NAME.equals(currentElement.getTagName()))
         {
             inputElement = currentElement;
         }
         else
         {
-            inputElement = getSeleniumWebElement(true).findElement(By.tagName(INPUT_TAG_NAME));
+            inputElement = getSeleniumWebElement(true).findElement(By.tagName(TEXTAREA_TAG_NAME));
         }
         return inputElement;
     }
@@ -106,7 +106,7 @@ public class TextBox extends Element // AbstractTextField
 
         // getParentClientBrowser().confirmFocus();
 
-        getInputElement().sendKeys(text);
+        getTextAreaElement().sendKeys(text);
     }
 
     public void replace(String text)

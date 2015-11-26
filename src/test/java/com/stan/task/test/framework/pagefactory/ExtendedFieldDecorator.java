@@ -13,15 +13,15 @@ import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
 
 import com.stan.task.test.framework.ClientBrowser;
 import com.stan.task.test.framework.control.Element;
-import com.stan.task.test.framework.page.AbstractPage;
+import com.stan.task.test.framework.page.Page;
 
 public class ExtendedFieldDecorator extends DefaultFieldDecorator
 {
 
     private final WebDriver _driver;
-    private final AbstractPage _parentPage;
+    private final Page _parentPage;
 
-    public ExtendedFieldDecorator(ClientBrowser browser, ElementLocatorFactory locatorFactory, AbstractPage parentPage)
+    public ExtendedFieldDecorator(ClientBrowser browser, ElementLocatorFactory locatorFactory, Page parentPage)
     {
         super(locatorFactory);
 
@@ -69,7 +69,7 @@ public class ExtendedFieldDecorator extends DefaultFieldDecorator
             for (Constructor<?> constructor : constructors)
             {
                 Class<?>[] parameterTypes = constructor.getParameterTypes();
-                if (parameterTypes.length == 3 && parameterTypes[0].isAssignableFrom(AbstractPage.class)
+                if (parameterTypes.length == 3 && parameterTypes[0].isAssignableFrom(Page.class)
                                 && parameterTypes[1].isAssignableFrom(WebElement.class) && parameterTypes[2].isAssignableFrom(String.class))
                 {
                     return constructor.newInstance(_parentPage, element, testName);

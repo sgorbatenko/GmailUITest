@@ -17,7 +17,7 @@ import org.seleniumhq.jetty7.util.log.Log;
 
 import com.stan.task.test.framework.ClientBrowser;
 import com.stan.task.test.framework.exception.NoSuchControlException;
-import com.stan.task.test.framework.page.AbstractPage;
+import com.stan.task.test.framework.page.Page;
 
 /**
  * Base implementation of the web element or web control, with low level internal methods to find the control in the web browser and exposed set of high level
@@ -42,7 +42,7 @@ public class Element // extends AbstractPageModelItem implements ElementCommon
 
     private String _internalTestName;
 
-    private AbstractPage _parentPage;
+    private Page _parentPage;
 
     private boolean _visibleMethodMustFindElement;
 
@@ -57,7 +57,7 @@ public class Element // extends AbstractPageModelItem implements ElementCommon
      */
     private boolean _pagefactoryInitializationFlag;
 
-    public Element(AbstractPage parentPage,
+    public Element(Page parentPage,
         ElementLocator elementLocator, String fieldControlName)
     {
         _parentPage = parentPage;
@@ -66,7 +66,7 @@ public class Element // extends AbstractPageModelItem implements ElementCommon
         _pagefactoryInitializationFlag = false;
     }
 
-    public Element(AbstractPage parentPage,
+    public Element(Page parentPage,
         List<ElementLocator> elementLocators, String controlName)
     {
         _parentPage = parentPage;
@@ -75,7 +75,7 @@ public class Element // extends AbstractPageModelItem implements ElementCommon
         _pagefactoryInitializationFlag = false;
     }
 
-    public Element(AbstractPage parentPage, WebElement element,
+    public Element(Page parentPage, WebElement element,
         String controlName)
     {
         _parentPage = parentPage;

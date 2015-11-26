@@ -8,7 +8,7 @@ import com.stan.task.test.framework.ClientBrowser;
 import com.stan.task.test.framework.pagefactory.ExtendedPageFactory;
 import com.stan.task.test.framework.pagefactory.TestName;
 
-public class ApplicationPage implements AbstractPage
+public class ApplicationPage implements Page
 {
     @TestName(testName = "Account menu")
     @FindBy(xpath = "//div/a[contains(@title,\'Google Account\')]")
@@ -21,6 +21,10 @@ public class ApplicationPage implements AbstractPage
     @TestName(testName = "Sign out button")
     @FindBy(xpath = "//div/a[text()=\'Sign out\']")
     private WebElement _signOutBtn;
+
+    @TestName(testName = "Compose button")
+    @FindBy(css = "div[role='button'][gh='cm']")
+    private WebElement _composeBtn;
 
     public ApplicationPage(ClientBrowser clientBrowser)
     {
@@ -40,5 +44,10 @@ public class ApplicationPage implements AbstractPage
     public WebElement getSignOutBtn()
     {
         return _signOutBtn;
+    }
+
+    public WebElement getComposeBtn()
+    {
+        return _composeBtn;
     }
 }

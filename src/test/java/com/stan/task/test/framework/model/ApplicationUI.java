@@ -1,6 +1,9 @@
 
 package com.stan.task.test.framework.model;
 
+import java.util.Deque;
+import java.util.LinkedList;
+
 import com.stan.task.test.framework.ClientBrowser;
 import com.stan.task.test.framework.page.ApplicationPage;
 
@@ -12,7 +15,7 @@ public class ApplicationUI
     private ApplicationPage _mainPage;
 
     // UI entities
-    // private LoginUI _loginUI;
+    private Deque<NewMessageUI> _newMessages = new LinkedList<NewMessageUI>();
 
     /**
      * Creates a new ApplicationUI instance.
@@ -52,4 +55,18 @@ public class ApplicationUI
         return getPage().getGoogleAccountMenu().isDisplayed();
 
     }
+
+    private Deque<NewMessageUI> getNewMessageUIs()
+    {
+        return _newMessages;
+    }
+
+    public NewMessageUI getNewMessageUI()
+    {
+        getPage().getComposeBtn().click();
+        _newMessages.add(new NewMessageUI(_parentClientBrowser));
+        return _newMessages.getLast();
+    }
+
+
 }

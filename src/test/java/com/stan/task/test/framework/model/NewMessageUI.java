@@ -73,7 +73,7 @@ public class NewMessageUI implements UiObject
     {
         setToAddress(e.getToAddress());
         setSubject(e.getSubject());
-        setBody(e.getContent());
+        setBody(e.getBody());
         clickSendButton();
     }
 }

@@ -4,7 +4,7 @@ package com.stan.task.test.framework.model;
 import org.testng.Assert;
 
 import com.stan.task.test.framework.ClientBrowser;
-import com.stan.task.test.framework.page.ApplicationPage;
+import com.stan.task.test.framework.page.HomePage;
 import com.stan.task.test.framework.page.LoginPage;
 
 public class LoginUI implements UiObject // extends ApplicationUI
@@ -31,29 +31,21 @@ public class LoginUI implements UiObject // extends ApplicationUI
         {
             _loginPage = new LoginPage(_parentClientBrowser);
         }
-
         return _loginPage;
     }
 
     public void setEmailname(String userName)
     {
-        // getParentClientBrowser().waitForElementPresentByCss("input[name='" +
-        // USERNAME_INPUT_NAME + "']", Wait.TIMEOUT_MIN_WAIT);
+        _parentClientBrowser.waitForElementPresent(getPage().getEmailTextBox());
         getPage().getEmailTextBox().click();
-        getPage().getEmailTextBox().append(userName); // replace(userName);
-        // getParentClientBrowser().waitForTextPresentInElement(By.name(USERNAME_INPUT_NAME),
+        getPage().getEmailTextBox().append(userName);
     }
 
     public void setPassword(String pwd)
     {
-        // getParentClientBrowser().waitForElementPresentByCss("input[name='" +
-        // PASSWORD_INPUT_NAME + "']", Wait.TIMEOUT_MIN_WAIT);
+        _parentClientBrowser.waitForElementPresent(getPage().getPasswordTextBox());
         getPage().getPasswordTextBox().click();
-        getPage().getPasswordTextBox().append(pwd); // replace(pwd);
-        // getParentClientBrowser().waitForTextPresentInElement(By.name(PASSWORD_INPUT_NAME),
-        // pwd);
-        // clickOnLogo();
-        // Testing.sleep(200);
+        getPage().getPasswordTextBox().append(pwd);
     }
 
     /**
@@ -62,10 +54,6 @@ public class LoginUI implements UiObject // extends ApplicationUI
      */
     public void clickLoginButton()
     {
-        // wait for it to be enabled
-        // getPage().getLoginButton().waitUntilHasAttributeState("disabled",
-        // false, 10, TestSettings.newFeature());
-
         getPage().getLoginButton().click();
     }
 
@@ -89,7 +77,7 @@ public class LoginUI implements UiObject // extends ApplicationUI
             "User Is Logged In");
     }
 
-    public ApplicationPage getApplicationHomePage()
+    public HomePage getApplicationHomePage()
     {
         return _parentClientBrowser.getApplicationUI().getPage();
     }

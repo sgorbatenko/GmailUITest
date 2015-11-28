@@ -29,10 +29,9 @@ public class TextArea extends Element // AbstractTextField
         super(parentBrowserItem, elementLocators, fieldControlName);
     }
 
-    public TextArea(Page parentBrowserItem, WebElement element,
-        String controlName)
+    public TextArea(WebElement element, String controlName)
     {
-        super(parentBrowserItem, element, controlName);
+        super(element, controlName);
     }
 
     public boolean isRequired()

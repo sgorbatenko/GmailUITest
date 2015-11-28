@@ -17,7 +17,7 @@ import org.seleniumhq.jetty7.util.log.Log;
 import com.stan.task.test.framework.control.Element;
 import com.stan.task.test.framework.control.ElementLocator;
 import com.stan.task.test.framework.exception.EnvironmentConfigurationException;
-import com.stan.task.test.framework.model.ApplicationUI;
+import com.stan.task.test.framework.model.HomeUI;
 import com.stan.task.test.framework.model.LoginUI;
 import com.stan.task.test.framework.utils.Wait;
 
@@ -30,7 +30,7 @@ public class ClientBrowser // extends AbstractClientBrowserChild
      * Web Browser's browser type
      */
     private final BrowserType _browserType;
-    private ApplicationUI _applicationUI;
+    private HomeUI _applicationUI;
     private LoginUI _loginUI;
 
     /**
@@ -59,11 +59,11 @@ public class ClientBrowser // extends AbstractClientBrowserChild
      * 
      * @return the mainUI
      */
-    public ApplicationUI getApplicationUI()
+    public HomeUI getApplicationUI()
     {
         if (_applicationUI == null)
         {
-            _applicationUI = new ApplicationUI(this);
+            _applicationUI = new HomeUI(this);
         }
         return _applicationUI;
     }
@@ -423,17 +423,6 @@ public class ClientBrowser // extends AbstractClientBrowserChild
         return timeInSeconds;
     }
 
-
-
-    /**
-     * Wait for element present. Low-level Legacy method - do not use for new coding
-     * 
-     * @param element
-     *        the element
-     * @param timeout
-     *        the timeout
-     */
-    @SuppressWarnings("deprecation")
     public void waitForElementPresent(final Element element, long timeout)
     {
         for (ElementLocator elementLocator : element.getLocatorsList())

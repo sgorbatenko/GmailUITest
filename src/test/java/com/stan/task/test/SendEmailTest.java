@@ -8,14 +8,14 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import com.stan.task.test.framework.data.Email;
-import com.stan.task.test.framework.model.ApplicationUI;
+import com.stan.task.test.framework.model.HomeUI;
 import com.stan.task.test.framework.model.LoginUI;
 import com.stan.task.test.framework.utils.Wait;
 
 public class SendEmailTest extends AbstractSeleniumTest
 {
     private LoginUI _loginUI;
-    private ApplicationUI _mainUI;
+    private HomeUI _mainUI;
 
     @BeforeClass
     public void setup() throws InterruptedException
@@ -41,5 +41,6 @@ public class SendEmailTest extends AbstractSeleniumTest
         _loginUI.login("usr7778899@gmail.com", "testPass456!#");
         Email e = new Email("usr7778899@gmail.com", "Test subject", "Test body");
         _mainUI.getNewMessageUI().sendEmail(e);
+        _mainUI.getEmailViewUI(e).verifyEmailSent(e);
     }
 }

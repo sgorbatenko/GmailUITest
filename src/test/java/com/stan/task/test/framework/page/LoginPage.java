@@ -34,24 +34,6 @@ public final class LoginPage implements Page
     @FindBy(id = "signIn")
     private WebElement _signInButton;
 
-//    @TestName(testName = "Next")
-//    @FindBy(name = "next")
-//    private WebElement _loginButton;
-
-    // @TestName(testName = "Create new account")
-    // @FindBy(linkText = "Create new account")
-    // private Link _createAccountLink;
-    //
-    // @TestName(testName = "Forgot your password")
-    // @FindBy(linkText = "Forgot your password?")
-    // private Link _forgotPasswordLink;
-
-    /**
-     * Creates a new LoginPage instance.
-     * 
-     * @param clientBrowser
-     *        the client browser
-     */
     public LoginPage(ClientBrowser clientBrowser)
     {
         ExtendedPageFactory.initElements(clientBrowser, this);

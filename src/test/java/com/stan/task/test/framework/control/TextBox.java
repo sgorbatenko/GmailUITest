@@ -29,10 +29,9 @@ public class TextBox extends Element // AbstractTextField
         super(parentBrowserItem, elementLocators, fieldControlName);
     }
 
-    public TextBox(Page parentBrowserItem, WebElement element,
-        String controlName)
+    public TextBox(WebElement element, String controlName)
     {
-        super(parentBrowserItem, element, controlName);
+        super(element, controlName);
     }
 
     public boolean isRequired()

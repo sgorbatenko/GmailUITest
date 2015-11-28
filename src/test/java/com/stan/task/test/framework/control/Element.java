@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.By.ByXPath;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.StaleElementReferenceException;
@@ -16,6 +17,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.seleniumhq.jetty7.util.log.Log;
 
 import com.stan.task.test.framework.ClientBrowser;
+import com.stan.task.test.framework.TestLogger;
 import com.stan.task.test.framework.exception.NoSuchControlException;
 import com.stan.task.test.framework.page.Page;
 
@@ -75,10 +77,9 @@ public class Element // extends AbstractPageModelItem implements ElementCommon
         _pagefactoryInitializationFlag = false;
     }
 
-    public Element(Page parentPage, WebElement element,
+    public Element(WebElement element,
         String controlName)
     {
-        _parentPage = parentPage;
         _seleniumWebElement = element;
         setInternalTestName(controlName);
         _pagefactoryInitializationFlag = true;
@@ -545,10 +546,10 @@ public class Element // extends AbstractPageModelItem implements ElementCommon
      */
     protected List<WebElement> findChildSeleniumWebElements(By seleniumByLocator)
     {
-        // if (ByXPath.class.isInstance(seleniumByLocator))
-        // {
-        // TestLogger.log("Control findChildSeleniumWebElements() called with xpath: " + seleniumByLocator.toString());
-        // }
+        if (ByXPath.class.isInstance(seleniumByLocator))
+        {
+            TestLogger.log("Control findChildSeleniumWebElements() called with xpath: " + seleniumByLocator.toString());
+        }
 
         try
         {
@@ -689,7 +690,6 @@ public class Element // extends AbstractPageModelItem implements ElementCommon
         return findChildSeleniumWebElement(By.xpath(xpath)) != null;
     }
 
-
     /**
      * Moves the mouse over the web element without logging or waiting for it to exist
      */
@@ -698,5 +698,10 @@ public class Element // extends AbstractPageModelItem implements ElementCommon
         WebElement element = getSeleniumWebElement(true);
 
         new Actions(getParentClientBrowser().getSeleniumWebDriver()).moveToElement(element).perform();
+    }
+
+    public String getDescription()
+    {
+        return getInternalTestName();
     }
 }

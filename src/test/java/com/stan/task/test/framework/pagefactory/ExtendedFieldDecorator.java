@@ -70,9 +70,14 @@ public class ExtendedFieldDecorator extends DefaultFieldDecorator
             {
                 Class<?>[] parameterTypes = constructor.getParameterTypes();
                 if (parameterTypes.length == 3 && parameterTypes[0].isAssignableFrom(Page.class)
-                                && parameterTypes[1].isAssignableFrom(WebElement.class) && parameterTypes[2].isAssignableFrom(String.class))
+                    && parameterTypes[1].isAssignableFrom(WebElement.class) && parameterTypes[2].isAssignableFrom(String.class))
                 {
                     return constructor.newInstance(_parentPage, element, testName);
+                }
+                else if (parameterTypes.length == 2
+                    && parameterTypes[0].isAssignableFrom(WebElement.class) && parameterTypes[1].isAssignableFrom(String.class))
+                {
+                    return constructor.newInstance(element, testName);
                 }
 
             }

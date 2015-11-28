@@ -7,7 +7,7 @@ import org.testng.annotations.BeforeClass;
 import com.stan.task.test.framework.BrowserName;
 import com.stan.task.test.framework.BrowserType;
 import com.stan.task.test.framework.ClientBrowser;
-import com.stan.task.test.framework.model.ApplicationUI;
+import com.stan.task.test.framework.model.HomeUI;
 import com.stan.task.test.framework.pagefactory.TestEnvironment;
 
 /**
@@ -17,7 +17,7 @@ import com.stan.task.test.framework.pagefactory.TestEnvironment;
 public abstract class AbstractSeleniumTest
 {
     private ClientBrowser _browser;
-    private ApplicationUI _applicationUI;
+    private HomeUI _applicationUI;
 
     private TestEnvironment _testEnvironment;
 
@@ -68,7 +68,7 @@ public abstract class AbstractSeleniumTest
      * 
      * @return the Application UI
      */
-    protected ApplicationUI getApplicationUI()
+    protected HomeUI getApplicationUI()
     {
         return _applicationUI;
     }

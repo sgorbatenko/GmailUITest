@@ -7,7 +7,10 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import com.stan.task.test.framework.TestLogger;
+import com.stan.task.test.framework.control.CheckBox;
 import com.stan.task.test.framework.control.Element;
+import com.stan.task.test.framework.control.ElementHtmlDoc;
 import com.stan.task.test.framework.control.ElementLocator;
 import com.stan.task.test.framework.control.HtmlDoc;
 import com.stan.task.test.framework.datastructures.DataTable;
@@ -44,10 +47,14 @@ public class SimpleGrid extends Element // implements Grid
     private static final String CELL_BY_ROW_AND_COLUMN_ORDINAL_XPATH = XPATH_CHILD_PREFIX + "//tr[%d]/td[%d]/div[contains(@class, 'x-grid-cell-inner')]";
     private static final String CELL_BY_COLUMN_ORDINAL_WITH_EXACT_TEXT_XPATH = XPATH_CHILD_PREFIX + "//tr/td[%d]/div[contains(@class, 'x-grid-cell-inner') and text()='%s']";
 
-    public static final String QUERY_ROWS_CSS = "div#feMain2 .local_table tr:not(.sum)";
-    public static final String SUBQUERY_CELLS_CSS = " td";
+    public static final String QUERY_ROWS_CSS = " .zA";
+    public static final String SUBQUERY_CELLS_CSS = " div span";
 
     protected static final String COLUMN_HEADERS_TEXT_CSS = ".x-column-header-text";
+
+    private static final String ROW_IS_SELECTED_ATTRIBUTE_SUBSTRING = null;
+
+    private static final String ROW_CHECKBOX_CSS = "T-Jo";
 
     public SimpleGrid(Page parentBrowserItem, ElementLocator elementLocator, String fieldControlName)
     {
@@ -59,9 +66,9 @@ public class SimpleGrid extends Element // implements Grid
         super(parentBrowserItem, elementLocators, fieldControlName);
     }
 
-    public SimpleGrid(Page parentBrowserItem, WebElement element, String controlName)
+    public SimpleGrid(WebElement element, String controlName)
     {
-        super(parentBrowserItem, element, controlName);
+        super(element, controlName);
     }
 
     /**
@@ -178,44 +185,6 @@ public class SimpleGrid extends Element // implements Grid
         WebElement cell = findChildSeleniumWebElement(By.xpath(filledInXpath));
         return cell.getText();
     }
-
-
-
-    // /**
-    // * Return 1-based row ordinal of the row which contains a cell with the exact text specified
-    // *
-    // * @param exactCellText
-    // * - text to find
-    // *
-    // * @return row number, -1 in case there is no row with such text
-    // */
-    // public int getRowOrdinalOfRowContainingCellWithText(String exactCellText)
-    // {
-    // // Due to several hidden rows, the effective row index is offset by 2 from the actual row index
-    // int effectiveRowIndex = -1;
-    //
-    // if (getRowCountWithCellEqualsText(exactCellText) != 0)
-    // {
-    // List<WebElement> gridRows = getRowSeleniumWebElements();
-    //
-    // for (int i = 0; i < gridRows.size(); i++)
-    // {
-    // String[] columnValues = gridRows.get(i).getText().split("\n");
-    //
-    // for (String columnValue : columnValues)
-    // {
-    // if (exactCellText.equals(columnValue.trim()))
-    // {
-    // effectiveRowIndex = i + 2;
-    // break;
-    // }
-    // }
-    // }
-    // }
-    //
-    // return effectiveRowIndex;
-    //
-    // }
 
     public boolean hasScroll()
     {
@@ -396,5 +365,117 @@ public class SimpleGrid extends Element // implements Grid
         }
 
         return table;
+    }
+
+    /**
+     * If the row's selected state does not pass the specified state, click the row to toggle the state
+     * 
+     * @param exactText
+     *        the text to find
+     * @param isSelected
+     *        the selected state of the row to set
+     */
+    public void setSelectedStateForRowContainingExactCellText(String exactText, boolean isSelected)
+    {
+        TestLogger.writeStep("Set the row's selected state to " + isSelected
+            + " for row containing cell with exact text '" + exactText + "' in " + getDescription());
+
+        WebElement row = getRowContainingCellWithExactText(exactText);
+
+        if (row == null)
+        {
+            TestLogger.fail("Did not find row with a cell with exact text '" + exactText
+                + "' in " + getDescription());
+        }
+        else
+        {
+            try
+            {
+                CheckBox checkbox = new CheckBox(row.findElement(By.cssSelector(ROW_CHECKBOX_CSS)),
+                    "Row CheckBox");
+                if (!checkbox.isChecked())
+                    checkbox.click();
+                else TestLogger.log("(Row was not clicked, its selection state was already found to be " + isSelected + ")");
+            }
+            catch (Exception exception)
+            {
+                TestLogger.fail("Error clicking Row Checkbox in " + getDescription() + " - " + exception.getMessage());
+            }
+
+        }
+    }
+
+    /**
+     * Return true if the row containing a cell with the specified exact text is selected
+     * 
+     * @param exactText
+     * @return true if the row containing a cell with the specified exact text is selected
+     */
+    public boolean getSelectedStateForRowContainingExactCellText(String exactText)
+    {
+        // String xpath = String.format(SELECTED_CHECKBOX_XPATH, textToFind);
+        // getParentClientBrowser().waitForElementPresentAndVisibleByXpath(getSeleniumWebElement(false),
+        // String.format(CHECKBOX_XPATH, textToFind));
+        // WebElement row = findChildSeleniumWebElement(By.xpath(xpath));
+        // return row != null;
+        WebElement row = getRowContainingCellWithExactText(exactText);
+
+        if (row == null)
+        {
+            throw new ControlLayerException("Did not find row with a cell with exact text '" + exactText
+                + "' in "
+                + getDescription());
+        }
+
+        return row.getAttribute(CLASS_ATTRIBUTE).contains(ROW_IS_SELECTED_ATTRIBUTE_SUBSTRING);
+    }
+
+    /**
+     * return the row selenium web element that contains a cell with the exact specified text, or null if no matching row found
+     * 
+     * @param exactCellText
+     * @return the row selenium web element that contains a cell with the exact specified text, or null if no matching row found
+     */
+    public WebElement getRowContainingCellWithExactText(String exactCellText)
+    {
+        for (int trialIndex = 0; trialIndex < 3; trialIndex++)
+        {
+            try
+            {
+                List<WebElement> rowSeleniumWebElements = getRowSeleniumWebElements();
+
+                if (rowSeleniumWebElements != null)
+                {
+                    // If current row has a cell with the exact text, return it
+                    for (WebElement rowWebElement : rowSeleniumWebElements)
+                    {
+                        if (new ElementHtmlDoc(rowWebElement, "Grid Row")
+                            .hasElementWithExactText(SUBQUERY_CELLS_CSS, exactCellText))
+                        {
+                            return rowWebElement;
+                        }
+                    }
+                }
+            }
+            catch (Exception exception)
+            {
+                // if we get error on the last iteration, fail
+                if (trialIndex == 2)
+                {
+                    TestLogger.fail("Could not query grid rows of " + getDescription(), exception);
+                }
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Return a list of the selenium web elements for the grid's rows, for internal use only
+     * 
+     * @return a list of the selenium web elements for the grid's rows
+     */
+    protected List<WebElement> getRowSeleniumWebElements()
+    {
+        return findChildSeleniumWebElements(By.cssSelector(QUERY_ROWS_CSS));
     }
 }

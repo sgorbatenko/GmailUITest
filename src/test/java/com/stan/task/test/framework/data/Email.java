@@ -24,7 +24,7 @@ public class Email
         return _subject;
     }
 
-    public String getContent()
+    public String getBody()
     {
         return _content;
     }

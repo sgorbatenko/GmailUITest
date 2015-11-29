@@ -4,6 +4,7 @@ package com.stan.task.test.framework.model;
 import org.testng.Assert;
 
 import com.stan.task.test.framework.ClientBrowser;
+import com.stan.task.test.framework.data.User;
 import com.stan.task.test.framework.page.HomePage;
 import com.stan.task.test.framework.page.LoginPage;
 
@@ -62,11 +63,11 @@ public class LoginUI implements UiObject // extends ApplicationUI
         getPage().getNextButton().click();
     }
 
-    public void login(String email, String password)
+    public void login(User user)
     {
-        setEmailname(email);
+        setEmailname(user.getEmailAddress());
         clickNextButton();
-        setPassword(password);
+        setPassword(user.getPassword());
         clickLoginButton();
     }
 

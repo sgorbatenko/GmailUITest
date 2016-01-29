@@ -6,24 +6,22 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import com.stan.task.test.framework.page.Page;
+import com.stan.task.test.framework.page.AbstractPage;
 
 public class TextArea extends Element // AbstractTextField
 {
     private static final String LABEL_TAG_NAME = "label";
     private static final String TEXTAREA_TAG_NAME = "textarea";
-    public static final String ID_ATTRIBUTE = "id";
-    public static final String CLASS_ATTRIBUTE = "class";
     private static final String INVALID_CLASS_SUBSTRING = "x-form-invalid-field";
     private static final String REQUIRED_CLASS_SUBSTRING = "x-form-required-field";
 
-    public TextArea(Page parentBrowserItem,
+    public TextArea(AbstractPage parentBrowserItem,
         ElementLocator elementLocator, String fieldControlName)
     {
         super(parentBrowserItem, elementLocator, fieldControlName);
     }
 
-    public TextArea(Page parentBrowserItem,
+    public TextArea(AbstractPage parentBrowserItem,
         List<ElementLocator> elementLocators, String fieldControlName)
     {
         super(parentBrowserItem, elementLocators, fieldControlName);
@@ -71,7 +69,8 @@ public class TextArea extends Element // AbstractTextField
             "return Ext.getCmp(arguments[0]).disabled", elementID);
     }
 
-    public String getText()
+    @Override
+	public String getText()
     {
         String text = getTextAreaElement().getAttribute(VALUE_ATTRIBUTE);
         return text;

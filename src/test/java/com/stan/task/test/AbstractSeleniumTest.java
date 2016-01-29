@@ -7,7 +7,6 @@ import org.testng.annotations.BeforeClass;
 import com.stan.task.test.framework.BrowserName;
 import com.stan.task.test.framework.BrowserType;
 import com.stan.task.test.framework.ClientBrowser;
-import com.stan.task.test.framework.model.HomeUI;
 import com.stan.task.test.framework.pagefactory.TestEnvironment;
 
 /**
@@ -17,7 +16,7 @@ import com.stan.task.test.framework.pagefactory.TestEnvironment;
 public abstract class AbstractSeleniumTest
 {
     private ClientBrowser _browser;
-    private HomeUI _applicationUI;
+    // private HomeUI _applicationUI;
 
     private TestEnvironment _testEnvironment;
 
@@ -28,18 +27,20 @@ public abstract class AbstractSeleniumTest
         // _applicationUI = newApplicationUI(BrowserName.fromString(browser),
         // version, screenWidth, screenHeight);
         _browser = getNewBrowserInstance(BrowserName.fromString("firefox"),
-            "34", 0, 0);
-        // _applicationUI = newApplicationUI(BrowserName.fromString("chrome"),
-        // "26", screenWidth, screenHeight);
-        // _applicationUI = newApplicationUI(BrowserName.fromString("ie"), "9",
-        // screenWidth, screenHeight);
+            "34",
+            0,
+            0);
+            // _applicationUI = newApplicationUI(BrowserName.fromString("chrome"),
+            // "26", screenWidth, screenHeight);
+            // _applicationUI = newApplicationUI(BrowserName.fromString("ie"), "9",
+            // screenWidth, screenHeight);
 
-        _applicationUI = getClientBrowser().getApplicationUI();
+        // _applicationUI = getClientBrowser().getApplicationUI();
     }
 
     /**
      * Gets the client browser.
-     * 
+     *
      * @return the client browser.
      */
     public ClientBrowser getClientBrowser()
@@ -49,7 +50,7 @@ public abstract class AbstractSeleniumTest
 
     /**
      * Gets the test environment.
-     * 
+     *
      * @return the test environment.
      */
     public TestEnvironment getTestEnvironment()
@@ -63,15 +64,15 @@ public abstract class AbstractSeleniumTest
 
 
 
-    /**
-     * Gets the Application ui
-     * 
-     * @return the Application UI
-     */
-    protected HomeUI getApplicationUI()
-    {
-        return _applicationUI;
-    }
+    // /**
+    // * Gets the Application ui
+    // *
+    // * @return the Application UI
+    // */
+    // protected HomeUI getApplicationUI()
+    // {
+    // return _applicationUI;
+    // }
 
 
     protected ClientBrowser getNewBrowserInstance(BrowserName browserName, String browserVersion)

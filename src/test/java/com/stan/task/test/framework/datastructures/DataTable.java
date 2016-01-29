@@ -6,7 +6,6 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
-import org.seleniumhq.jetty7.util.log.Log;
 
 import com.stan.task.test.framework.exception.CoreLevelException;
 
@@ -355,8 +354,6 @@ public class DataTable<T>
                 // TestLogger.log("'" + partialText + "' not found in " + TestLogger.getLogString(cellValue));
             }
         }
-
-        Log.warn("Could not get row with cell containing text " + partialText);
 
         return null;
     }

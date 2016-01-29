@@ -8,7 +8,7 @@ import com.stan.task.test.framework.ClientBrowser;
 import com.stan.task.test.framework.data.Email;
 import com.stan.task.test.framework.page.HomePage;
 
-public class HomeUI
+public class HomeUI implements UiObject
 {
     private final ClientBrowser _parentClientBrowser;
 
@@ -24,6 +24,7 @@ public class HomeUI
         _parentClientBrowser = parentClientBrowser;
     }
 
+    @Override
     public HomePage getPage()
     {
         if (_mainPage == null)
@@ -44,7 +45,6 @@ public class HomeUI
     public boolean isUserLoggedIn()
     {
         return getPage().getGoogleAccountMenu().isDisplayed();
-
     }
 
     public NewMessageUI getNewMessageUI()
@@ -63,9 +63,25 @@ public class HomeUI
             .click();
     }
 
-//    private Deque<NewMessageUI> getNewMessageUIs()
-//    {
-//        return _newMessages;
-//    }
+    @Override
+    public boolean isOpened()
+    {
+        return isUserLoggedIn();
+    }
+
+    @Override
+    public UiObject open()
+    {
+        if (isOpened())
+        {
+            return this;
+        }
+        return null;
+    }
+
+    // private Deque<NewMessageUI> getNewMessageUIs()
+    // {
+    // return _newMessages;
+    // }
 
 }

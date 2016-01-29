@@ -11,18 +11,14 @@ public class NewMessageUI implements UiObject
 
     private NewMessagePage _newMessagePage;
 
-    /**
-     * Creates a new ApplicationUI instance.
-     * 
-     * @param parentClientBrowser
-     *        the parent login ui
-     */
+
     public NewMessageUI(ClientBrowser parentClientBrowser)
     {
         // super(parentClientBrowser);
         _parentClientBrowser = parentClientBrowser;
     }
 
+    @Override
     public NewMessagePage getPage()
     {
         if (_newMessagePage == null)
@@ -75,5 +71,21 @@ public class NewMessageUI implements UiObject
         setSubject(e.getSubject());
         setBody(e.getBody());
         clickSendButton();
+    }
+
+    @Override
+    public boolean isOpened()
+    {
+        return getPage().get_sendBtn().isDisplayed();
+    }
+
+    @Override
+    public UiObject open()
+    {
+        if (!isOpened())
+        {
+
+        }
+        return null;
     }
 }

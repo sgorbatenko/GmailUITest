@@ -19,6 +19,7 @@ public class EmailViewUI implements UiObject
         _parentClientBrowser = parentClientBrowser;
     }
 
+    @Override
     public ViewEmailPage getPage()
     {
         if (_viewEmailPage == null)
@@ -36,5 +37,19 @@ public class EmailViewUI implements UiObject
         Assert.assertTrue(
             getPage().getBody().getText().equals(e.getBody()));
 
+    }
+
+    @Override
+    public boolean isOpened()
+    {
+        // TODO-SG Auto-generated method stub
+        return false;
+    }
+
+    @Override
+    public UiObject open()
+    {
+        // TODO-SG Auto-generated method stub
+        return null;
     }
 }

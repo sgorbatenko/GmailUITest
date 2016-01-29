@@ -20,15 +20,16 @@ public class SendEmailTest extends AbstractSeleniumTest
     private User _user;
 
     @BeforeClass
-    public void setup() throws InterruptedException
+    public void setup()
     {
-        _user = new User("usr7778899@gmail.com", "testPass456!#");
-        getClientBrowser().getSeleniumWebDriver().manage().timeouts()
-            .implicitlyWait(Wait.TIMEOUT_MIN_WAIT, TimeUnit.SECONDS);
+        _user = new User("usr7778899@gmail.com", "testPass456!##");
+        getClientBrowser().getSeleniumWebDriver().manage().timeouts().implicitlyWait(Wait.TIMEOUT_MIN_WAIT,
+            TimeUnit.SECONDS);
         _loginUI = getClientBrowser().getLoginUI();
         _mainUI = getClientBrowser().getApplicationUI();
     }
 
+    @Override
     @AfterClass
     public void teardown()
     {

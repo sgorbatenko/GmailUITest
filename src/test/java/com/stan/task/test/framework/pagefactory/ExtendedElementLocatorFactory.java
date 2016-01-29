@@ -17,7 +17,8 @@ public class ExtendedElementLocatorFactory implements ElementLocatorFactory
     }
 
 
-    public ElementLocator createLocator(Field field)
+    @Override
+	public ElementLocator createLocator(Field field) 
     {
         return new ExtendedElementLocator(_driver, field);
     }

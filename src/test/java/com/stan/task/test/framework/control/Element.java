@@ -14,12 +14,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.seleniumhq.jetty7.util.log.Log;
 
 import com.stan.task.test.framework.ClientBrowser;
 import com.stan.task.test.framework.TestLogger;
 import com.stan.task.test.framework.exception.NoSuchControlException;
-import com.stan.task.test.framework.page.Page;
+import com.stan.task.test.framework.page.AbstractPage;
 
 /**
  * Base implementation of the web element or web control, with low level internal methods to find the control in the web browser and exposed set of high level
@@ -44,7 +43,7 @@ public class Element // extends AbstractPageModelItem implements ElementCommon
 
     private String _internalTestName;
 
-    private Page _parentPage;
+    private AbstractPage _parentPage;
 
     private boolean _visibleMethodMustFindElement;
 
@@ -59,7 +58,7 @@ public class Element // extends AbstractPageModelItem implements ElementCommon
      */
     private boolean _pagefactoryInitializationFlag;
 
-    public Element(Page parentPage,
+    public Element(AbstractPage parentPage,
         ElementLocator elementLocator, String fieldControlName)
     {
         _parentPage = parentPage;
@@ -68,7 +67,7 @@ public class Element // extends AbstractPageModelItem implements ElementCommon
         _pagefactoryInitializationFlag = false;
     }
 
-    public Element(Page parentPage,
+    public Element(AbstractPage parentPage,
         List<ElementLocator> elementLocators, String controlName)
     {
         _parentPage = parentPage;
@@ -249,7 +248,7 @@ public class Element // extends AbstractPageModelItem implements ElementCommon
         }
         catch (Throwable e)
         {
-            Log.warn("Unexpected exception in Element.isVisible(), but continuing: " + e.getMessage());
+            //Log.warn("Unexpected exception in Element.isVisible(), but continuing: " + e.getMessage());
 
             return false;
         }
@@ -700,7 +699,7 @@ public class Element // extends AbstractPageModelItem implements ElementCommon
         new Actions(getParentClientBrowser().getSeleniumWebDriver()).moveToElement(element).perform();
     }
 
-    public String getDescription()
+    public String getName()
     {
         return getInternalTestName();
     }

@@ -14,7 +14,7 @@ public class ElementHtmlDoc extends HtmlDoc
     {
         super(element.getSeleniumWebElement(true).getAttribute("innerHTML"));
 
-        _controlDescription = element.getDescription();
+        _controlDescription = element.getName();
     }
 
     public ElementHtmlDoc(WebElement seleniumWebelement, String controlDescription)

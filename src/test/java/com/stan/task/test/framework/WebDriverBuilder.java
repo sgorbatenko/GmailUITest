@@ -19,7 +19,6 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.seleniumhq.jetty7.util.log.Log;
 import org.testng.Assert;
 
 import com.stan.task.test.framework.configuration.Environment;
@@ -210,12 +209,12 @@ public final class WebDriverBuilder
         String chromeEclipsePath = Environment.getResourcesPath() + chromePath;
         if (new File(chromePath).exists())
         {
-            Log.debug("Using chromedriver from " + chromePath);
+            //Log.debug("Using chromedriver from " + chromePath);
         }
         else if (new File(chromeEclipsePath).exists())
         {
             chromePath = chromeEclipsePath;
-            Log.debug("Using chromedriver from " + chromePath);
+            //Log.debug("Using chromedriver from " + chromePath);
         }
         else
         {
@@ -226,14 +225,14 @@ public final class WebDriverBuilder
 
         if (new File(chromePath).length() == 0)
         {
-            Log.debug("Waiting until unpack the resources from jar file");
+            //Log.debug("Waiting until unpack the resources from jar file");
             try
             {
                 Thread.sleep(5000);
             }
             catch (InterruptedException ex)
             {
-                Log.debug(ex);
+                //Log.debug(ex);
             }
         }
 
@@ -322,12 +321,12 @@ public final class WebDriverBuilder
         String ieEclipsePath = Environment.getResourcesPath() + iePath;
         if (new File(iePath).exists())
         {
-            Log.debug("Using iedriver from " + iePath);
+            //Log.debug("Using iedriver from " + iePath);
         }
         else if (new File(ieEclipsePath).exists())
         {
             iePath = ieEclipsePath;
-            Log.debug("Using iedriver from " + iePath);
+            //Log.debug("Using iedriver from " + iePath);
         }
         else
         {
@@ -338,14 +337,14 @@ public final class WebDriverBuilder
 
         if (new File(iePath).length() == 0)
         {
-            Log.debug("Waiting until unpack the resources from jar file");
+            //Log.debug("Waiting until unpack the resources from jar file");
             try
             {
                 Thread.sleep(5000);
             }
             catch (InterruptedException ex)
             {
-                Log.debug(ex);
+                //Log.debug(ex);
             }
         }
         String ieBinaryPath = new File(iePath).getAbsolutePath();

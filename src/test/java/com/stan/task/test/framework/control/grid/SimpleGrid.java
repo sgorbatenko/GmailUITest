@@ -15,7 +15,7 @@ import com.stan.task.test.framework.control.ElementLocator;
 import com.stan.task.test.framework.control.HtmlDoc;
 import com.stan.task.test.framework.datastructures.DataTable;
 import com.stan.task.test.framework.exception.ControlLayerException;
-import com.stan.task.test.framework.page.Page;
+import com.stan.task.test.framework.page.AbstractPage;
 import com.stan.task.test.framework.utils.ScrollUtils;
 import com.stan.task.test.framework.utils.WebElementHelper;
 
@@ -56,12 +56,12 @@ public class SimpleGrid extends Element // implements Grid
 
     private static final String ROW_CHECKBOX_CSS = "T-Jo";
 
-    public SimpleGrid(Page parentBrowserItem, ElementLocator elementLocator, String fieldControlName)
+    public SimpleGrid(AbstractPage parentBrowserItem, ElementLocator elementLocator, String fieldControlName)
     {
         super(parentBrowserItem, elementLocator, fieldControlName);
     }
 
-    public SimpleGrid(Page parentBrowserItem, List<ElementLocator> elementLocators, String fieldControlName)
+    public SimpleGrid(AbstractPage parentBrowserItem, List<ElementLocator> elementLocators, String fieldControlName)
     {
         super(parentBrowserItem, elementLocators, fieldControlName);
     }
@@ -378,14 +378,14 @@ public class SimpleGrid extends Element // implements Grid
     public void setSelectedStateForRowContainingExactCellText(String exactText, boolean isSelected)
     {
         TestLogger.writeStep("Set the row's selected state to " + isSelected
-            + " for row containing cell with exact text '" + exactText + "' in " + getDescription());
+            + " for row containing cell with exact text '" + exactText + "' in " + getName());
 
         WebElement row = getRowContainingCellWithExactText(exactText);
 
         if (row == null)
         {
             TestLogger.fail("Did not find row with a cell with exact text '" + exactText
-                + "' in " + getDescription());
+                + "' in " + getName());
         }
         else
         {
@@ -399,7 +399,7 @@ public class SimpleGrid extends Element // implements Grid
             }
             catch (Exception exception)
             {
-                TestLogger.fail("Error clicking Row Checkbox in " + getDescription() + " - " + exception.getMessage());
+                TestLogger.fail("Error clicking Row Checkbox in " + getName() + " - " + exception.getMessage());
             }
 
         }
@@ -424,7 +424,7 @@ public class SimpleGrid extends Element // implements Grid
         {
             throw new ControlLayerException("Did not find row with a cell with exact text '" + exactText
                 + "' in "
-                + getDescription());
+                + getName());
         }
 
         return row.getAttribute(CLASS_ATTRIBUTE).contains(ROW_IS_SELECTED_ATTRIBUTE_SUBSTRING);
@@ -462,7 +462,7 @@ public class SimpleGrid extends Element // implements Grid
                 // if we get error on the last iteration, fail
                 if (trialIndex == 2)
                 {
-                    TestLogger.fail("Could not query grid rows of " + getDescription(), exception);
+                    TestLogger.fail("Could not query grid rows of " + getName(), exception);
                 }
             }
         }

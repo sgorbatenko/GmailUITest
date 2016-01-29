@@ -10,7 +10,7 @@ import com.stan.task.test.framework.control.TextBox;
 import com.stan.task.test.framework.pagefactory.ExtendedPageFactory;
 import com.stan.task.test.framework.pagefactory.TestName;
 
-public class NewMessagePage implements Page
+public class NewMessagePage extends AbstractPage
 {
     @TestName(testName = "To textbox")
     @FindBy(name = "to")
@@ -51,5 +51,12 @@ public class NewMessagePage implements Page
     public NewMessagePage(ClientBrowser clientBrowser)
     {
         ExtendedPageFactory.initElements(clientBrowser, this);
+    }
+
+    @Override
+    void populateUiControls()
+    {
+        // TODO-SG Auto-generated method stub
+
     }
 }

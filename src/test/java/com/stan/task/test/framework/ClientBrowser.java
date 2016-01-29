@@ -12,7 +12,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriver.Window;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.seleniumhq.jetty7.util.log.Log;
 
 import com.stan.task.test.framework.control.Element;
 import com.stan.task.test.framework.control.ElementLocator;
@@ -45,7 +44,7 @@ public class ClientBrowser // extends AbstractClientBrowserChild
 
     /**
      * Constructs new instance of ClientBrowser.
-     * 
+     *
      * @param type
      *        - browser type from @link{BrowserType} enumeration.
      */
@@ -56,13 +55,14 @@ public class ClientBrowser // extends AbstractClientBrowserChild
 
     /**
      * Gets the main ui.
-     * 
+     *
      * @return the mainUI
      */
     public HomeUI getApplicationUI()
     {
         if (_applicationUI == null)
         {
+            getLoginUI().loginIfNotLoggedIn("usr7778899@gmail.com", "testPass456!##");
             _applicationUI = new HomeUI(this);
         }
         return _applicationUI;
@@ -99,7 +99,7 @@ public class ClientBrowser // extends AbstractClientBrowserChild
 
     /**
      * return true if browser still open (if it still has a valid driver)
-     * 
+     *
      * @return true if browser still open (if it still has a valid driver)
      */
     public boolean isBrowserOpen()
@@ -138,7 +138,7 @@ public class ClientBrowser // extends AbstractClientBrowserChild
 
     /**
      * Opens specified URL.
-     * 
+     *
      * @param url
      *        - URL to open.
      */
@@ -149,7 +149,7 @@ public class ClientBrowser // extends AbstractClientBrowserChild
 
     /**
      * Return the current URL from the browser
-     * 
+     *
      * @return the current URL from the browser
      */
     public String getCurrentUrl()
@@ -198,7 +198,7 @@ public class ClientBrowser // extends AbstractClientBrowserChild
 
     /**
      * Set the browser window size on the screen
-     * 
+     *
      * @param screenWidth
      * @param screenHeight
      */
@@ -210,7 +210,7 @@ public class ClientBrowser // extends AbstractClientBrowserChild
 
     /**
      * Set the browser window position on the screen
-     * 
+     *
      * @param x
      * @param y
      */
@@ -221,7 +221,7 @@ public class ClientBrowser // extends AbstractClientBrowserChild
 
     /**
      * Send the key sequence to the browser
-     * 
+     *
      * @param keys
      * @param n
      */
@@ -254,7 +254,7 @@ public class ClientBrowser // extends AbstractClientBrowserChild
 
     /**
      * Get the low-level Selenium web Driver --- this should not be used for new coding
-     * 
+     *
      * @return the low-level Selenioum web Driver --- this should not be used for new coding
      */
     public WebDriver getSeleniumWebDriver()
@@ -269,7 +269,7 @@ public class ClientBrowser // extends AbstractClientBrowserChild
 
     /**
      * Gets the java script executor
-     * 
+     *
      * @return the java script executor
      */
     public JavascriptExecutor getJavaScriptExecutor()
@@ -345,7 +345,7 @@ public class ClientBrowser // extends AbstractClientBrowserChild
 
     /**
      * Get instance based standard browser based time in seconds, which may vary depending on the browser type
-     * 
+     *
      * @param browserBasedTime
      * @return instance based standard browser based timeouts, which may vary depending on the browser type
      */
@@ -356,7 +356,7 @@ public class ClientBrowser // extends AbstractClientBrowserChild
 
         switch (browserBasedTime)
         {
-        // wait for control to appear in a normal UI
+            // wait for control to appear in a normal UI
             case WAIT_FOR_CONTROL_IN_UI:
                 timeInSeconds = 5;
                 break;
@@ -438,7 +438,7 @@ public class ClientBrowser // extends AbstractClientBrowserChild
             }
             catch (TimeoutException e)
             {
-                Log.warn("unable to find element using one of the locators. trying next one..");
+                // Log.warn("unable to find element using one of the locators. trying next one..");
             }
         }
         throw new TimeoutException("unable to find element using locator");
@@ -446,7 +446,7 @@ public class ClientBrowser // extends AbstractClientBrowserChild
 
     /**
      * Wait for element present with default timeout 15 seconds. Low-level Legacy method - do not use for new coding
-     * 
+     *
      * @param element
      *        the element
      */
@@ -457,7 +457,7 @@ public class ClientBrowser // extends AbstractClientBrowserChild
 
     /**
      * Wait for element enabled. Low-level Legacy method - do not use for new coding
-     * 
+     *
      * @param element
      *        the element
      * @param timeout
@@ -483,7 +483,7 @@ public class ClientBrowser // extends AbstractClientBrowserChild
             }
             catch (TimeoutException e)
             {
-                Log.info("unable to find element using one of the locators. trying next one..");
+                // Log.info("unable to find element using one of the locators. trying next one..");
             }
         }
         throw new TimeoutException("unable to find element using locator");
@@ -491,7 +491,7 @@ public class ClientBrowser // extends AbstractClientBrowserChild
 
     /**
      * Wait for element enabled with default timeout 15 seconds. Low-level Legacy method - do not use for new coding
-     * 
+     *
      * @param element
      *        the element
      */
@@ -502,7 +502,7 @@ public class ClientBrowser // extends AbstractClientBrowserChild
 
     /**
      * Checks if element present by xpath. Low-level Legacy method - do not use for new coding
-     * 
+     *
      * @param xpath
      *        the target
      * @return true, if element present
@@ -524,7 +524,7 @@ public class ClientBrowser // extends AbstractClientBrowserChild
 
     /**
      * Checks if element is present by css selector. Low-level Legacy method - do not use for new coding
-     * 
+     *
      * @param css
      * @return true, if element is present
      */
@@ -545,7 +545,7 @@ public class ClientBrowser // extends AbstractClientBrowserChild
 
     /**
      * Low-level Legacy method - do not use for new coding
-     * 
+     *
      * @param target
      * @param timeout
      * @return true if element was found within the timeout
@@ -566,7 +566,7 @@ public class ClientBrowser // extends AbstractClientBrowserChild
 
     /**
      * Low-level Legacy method - do not use for new coding
-     * 
+     *
      * @param target
      * @param timeout
      * @return true if element was found within the timeout
@@ -587,7 +587,7 @@ public class ClientBrowser // extends AbstractClientBrowserChild
 
     /**
      * Low-level Legacy method - do not use for new coding
-     * 
+     *
      * @param by
      * @param text
      */

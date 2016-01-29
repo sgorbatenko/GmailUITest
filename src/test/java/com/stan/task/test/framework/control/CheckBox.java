@@ -5,20 +5,20 @@ import java.util.List;
 
 import org.openqa.selenium.WebElement;
 
-import com.stan.task.test.framework.page.Page;
+import com.stan.task.test.framework.page.AbstractPage;
 
 public class CheckBox extends Element
 {
     public static final String CHECKED_ATTRIBUTE = "aria-checked";
     private static final String TRUE = "true";
 
-    public CheckBox(Page parentBrowserItem,
+    public CheckBox(AbstractPage parentBrowserItem,
         ElementLocator elementLocator, String fieldControlName)
     {
         super(parentBrowserItem, elementLocator, fieldControlName);
     }
 
-    public CheckBox(Page parentBrowserItem,
+    public CheckBox(AbstractPage parentBrowserItem,
         List<ElementLocator> elementLocators, String fieldControlName)
     {
         super(parentBrowserItem, elementLocators, fieldControlName);

@@ -8,7 +8,7 @@ import com.stan.task.test.framework.data.User;
 import com.stan.task.test.framework.page.HomePage;
 import com.stan.task.test.framework.page.LoginPage;
 
-public class LoginUI implements UiObject // extends ApplicationUI
+public class LoginUI implements UiObject
 {
     private final ClientBrowser _parentClientBrowser;
 
@@ -16,7 +16,7 @@ public class LoginUI implements UiObject // extends ApplicationUI
 
     /**
      * Creates a new ApplicationUI instance.
-     * 
+     *
      * @param parentClientBrowser
      *        the parent login ui
      */
@@ -26,6 +26,7 @@ public class LoginUI implements UiObject // extends ApplicationUI
         _parentClientBrowser = parentClientBrowser;
     }
 
+    @Override
     public LoginPage getPage()
     {
         if (_loginPage == null)
@@ -65,17 +66,25 @@ public class LoginUI implements UiObject // extends ApplicationUI
 
     public void login(User user)
     {
-        setEmailname(user.getEmailAddress());
+        login(user.getEmailAddress(), user.getPassword());
+    }
+
+    public void login(String email, String password)
+    {
+        setEmailname(email);
         clickNextButton();
-        setPassword(user.getPassword());
+        setPassword(password);
         clickLoginButton();
     }
 
     public void verifyUserIsLoggedIn()
     {
-        Assert.assertTrue(
-            getApplicationHomePage().getGoogleAccountMenu().isDisplayed(),
-            "User Is Logged In");
+        Assert.assertTrue(isUserLoggedIn(), "User Is Logged In");
+    }
+
+    public boolean isUserLoggedIn()
+    {
+        return !getPage().getLoginButton().isVisible();
     }
 
     public HomePage getApplicationHomePage()
@@ -95,6 +104,28 @@ public class LoginUI implements UiObject // extends ApplicationUI
         Assert.assertTrue(
             _loginPage.getPasswordTextBox().isVisible(),
             "User is logged out by Password TextBox being visible");
+    }
+
+    @Override
+    public boolean isOpened()
+    {
+        // TODO-SG Auto-generated method stub
+        return false;
+    }
+
+    @Override
+    public UiObject open()
+    {
+        // TODO-SG Auto-generated method stub
+        return null;
+    }
+
+    public void loginIfNotLoggedIn(String email, String password)
+    {
+        if (!isUserLoggedIn())
+        {
+            login(email, password);
+        }
     }
 
 }

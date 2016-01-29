@@ -1,10 +1,10 @@
 
 package com.stan.task.test.framework.page;
 
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import com.stan.task.test.framework.ClientBrowser;
+import com.stan.task.test.framework.control.Button;
 import com.stan.task.test.framework.control.TextBox;
 import com.stan.task.test.framework.pagefactory.ExtendedPageFactory;
 import com.stan.task.test.framework.pagefactory.TestName;
@@ -12,12 +12,8 @@ import com.stan.task.test.framework.pagefactory.TestName;
 /**
  * The LoginPage Class.
  */
-public final class LoginPage implements Page
+public final class LoginPage extends AbstractPage
 {
-    // @TestName(testName = "Logo image")
-    // @FindBy(css = "#fp-login-form #fp-login-form-body label.x-component")
-    // private Image _logoImage;
-
     @TestName(testName = "Email")
     @FindBy(name = "Email")
     private TextBox _emailTextBox;
@@ -28,11 +24,11 @@ public final class LoginPage implements Page
 
     @TestName(testName = "Next")
     @FindBy(name = "signIn")
-    private WebElement _nextButton;
+    private Button _nextButton;
 
     @TestName(testName = "Login")
     @FindBy(id = "signIn")
-    private WebElement _signInButton;
+    private Button _signInButton;
 
     public LoginPage(ClientBrowser clientBrowser)
     {
@@ -41,7 +37,7 @@ public final class LoginPage implements Page
 
     /**
      * Gets the username text box.
-     * 
+     *
      * @return the textFieldUsername
      */
     public TextBox getEmailTextBox()
@@ -51,7 +47,7 @@ public final class LoginPage implements Page
 
     /**
      * Gets the password text box.
-     * 
+     *
      * @return the textFieldPassword
      */
     public TextBox getPasswordTextBox()
@@ -61,28 +57,35 @@ public final class LoginPage implements Page
 
     /**
      * Gets the login button.
-     * 
+     *
      * @return the btnLogin
      */
-    public WebElement getLoginButton()
+    public Button getLoginButton()
     {
         return _signInButton;
     }
 
-    public WebElement getNextButton()
+    public Button getNextButton()
     {
         return _nextButton;
     }
 
-//    /**
-//     * Gets the login button.
-//     * 
-//     * @return the btnLogin
-//     */
-//    public WebElement getNextButton()
-//    {
-//        return _nextButton;
-//    }
+    @Override
+    void populateUiControls()
+    {
+        // TODO-SG Auto-generated method stub
+
+    }
+
+    // /**
+    // * Gets the login button.
+    // *
+    // * @return the btnLogin
+    // */
+    // public WebElement getNextButton()
+    // {
+    // return _nextButton;
+    // }
     //
     // /**
     // * Gets the creates the account link.

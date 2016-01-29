@@ -33,7 +33,8 @@ public class ScreenshotRemoteWebdriver extends RemoteWebDriver
     // BEGIN: methods
 
 
-    public <X> X getScreenshotAs(OutputType<X> target)
+    @Override
+	public <X> X getScreenshotAs(OutputType<X> target)
     {
         if ((Boolean) getCapabilities().getCapability(CapabilityType.TAKES_SCREENSHOT))
         {

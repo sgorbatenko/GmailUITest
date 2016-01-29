@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.internal.WrapsDriver;
 import org.openqa.selenium.internal.WrapsElement;
-import org.seleniumhq.jetty7.util.log.Log;
+
 
 public final class WebElementHelper
 {
@@ -121,26 +121,6 @@ public final class WebElementHelper
     {
         String script = String.format(INVOKE_METHOD_SCRIPT, CLICK_METHOD);
         executeScript(script, element);
-    }
-
-
-
-    @SuppressWarnings("deprecation")
-    public static void scrollIntoView(WebElement element, String controlName)
-    {
-        JavascriptExecutor executor = getJavascriptExecutor(element);
-
-        try
-        {
-            executor.executeScript(SCROLL_INTO_VIEW_SCRIPT, element);
-        }
-        catch (Throwable exception)
-        {
-            Log.warn("Exception (Element.java) trying to scroll control '" + controlName
-                + "' into view: "
-                + exception.getMessage());
-        }
-
     }
 
     private static Object executeScript(String script, WebElement element)

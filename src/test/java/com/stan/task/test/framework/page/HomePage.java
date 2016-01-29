@@ -5,11 +5,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import com.stan.task.test.framework.ClientBrowser;
+import com.stan.task.test.framework.control.Button;
+import com.stan.task.test.framework.control.Element;
 import com.stan.task.test.framework.control.grid.SimpleGrid;
 import com.stan.task.test.framework.pagefactory.ExtendedPageFactory;
 import com.stan.task.test.framework.pagefactory.TestName;
 
-public class HomePage implements Page
+public class HomePage extends AbstractPage
 {
     @TestName(testName = "Account menu")
     @FindBy(xpath = "//div/a[contains(@title,\'Google Account\')]")
@@ -17,19 +19,19 @@ public class HomePage implements Page
 
     @TestName(testName = "Account button")
     @FindBy(css = ".gb_8c")
-    private WebElement _accountBtn;
+    private Button _accountBtn;
 
     @TestName(testName = "Sign out button")
-    @FindBy(xpath = "//div/a[text()=\'Sign out\']")
-    private WebElement _signOutBtn;
+    @FindBy(css = "div a[href*='logout']")
+    private Button _signOutBtn;
 
     @TestName(testName = "Compose button")
     @FindBy(css = "div[role='button'][gh='cm']")
-    private WebElement _composeBtn;
+    private Button _composeBtn;
 
     @TestName(testName = "Inbox Link")
-    @FindBy(css = "div[role='navigation']  a[title*='Inbox']")
-    private WebElement _inboxLink;
+    @FindBy(css = "div[role='navigation']  a[href*='inbox']")
+    private Element _inboxLink;
 
     @TestName(testName = "Inbox Grid")
     @FindBy(css = ".BltHke:not([style='display: none;']) table.F")
@@ -45,22 +47,22 @@ public class HomePage implements Page
         return _googleAccountMenu;
     }
 
-    public WebElement getAccount()
+    public Button getAccountBtn()
     {
         return _accountBtn;
     }
 
-    public WebElement getSignOutBtn()
+    public Button getSignOutBtn()
     {
         return _signOutBtn;
     }
 
-    public WebElement getComposeBtn()
+    public Button getComposeBtn()
     {
         return _composeBtn;
     }
 
-    public WebElement getInboxLink()
+    public Element getInboxLink()
     {
         return _inboxLink;
     }
@@ -68,5 +70,15 @@ public class HomePage implements Page
     public SimpleGrid getInboxGrid()
     {
         return _inboxGrid;
+    }
+
+    @Override
+    void populateUiControls()
+    {
+        addUiControl(getInboxGrid());
+        addUiControl(getAccountBtn());
+        addUiControl(getComposeBtn());
+        addUiControl(getInboxLink());
+        addUiControl(getSignOutBtn());
     }
 }

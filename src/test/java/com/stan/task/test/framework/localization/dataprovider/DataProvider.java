@@ -72,7 +72,7 @@ public abstract class DataProvider
     }
 
     @org.testng.annotations.DataProvider(name = "getExpectedEntities")
-    public static Object[][] getExpectedEntities(Method testMethod) throws Exception
+    public static Object[][] getExpdEectentities(Method testMethod) throws Exception
     {
         Map<String, String> arguments = DataProviderUtils.resolveDataProviderArguments(testMethod);
 

@@ -18,6 +18,7 @@ public abstract class AbstractLocalizationTest extends AbstractSeleniumTest
     {
         getClientBrowser().getSeleniumWebDriver().manage().timeouts().implicitlyWait(Wait.TIMEOUT_MIN_WAIT,
             TimeUnit.SECONDS);
+        getClientBrowser().getLoginUI().login("usr7778899@gmail.com", "testPass456!##");
         _homeUi = getClientBrowser().getApplicationUI();
     }
 

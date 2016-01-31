@@ -122,10 +122,10 @@ public class LoginUI implements UiObject
 
     public void loginIfNotLoggedIn(String email, String password)
     {
-        if (!isUserLoggedIn())
-        {
-            login(email, password);
-        }
+//        if (!isUserLoggedIn())
+//        {
+        login(email, password);
+        // }
     }
 
 }

@@ -11,7 +11,7 @@ public interface UiObject
 
     UiObject open();
 
-    public default String getUIFieldValue(String property)
+    public default String getUIFieldValue(String property) throws Exception
     {
         return getPage().getUiControl(property).getText();
     }

@@ -27,8 +27,6 @@ public final class Utils
     public static List<String> getTestDataFilesListFromFile(String path) throws IOException
     {
         InputStream is = Utils.class.getResourceAsStream(path);
-        System.out.println("Working Directory = " +
-            System.getProperty("user.dir"));
         BufferedReader br = new BufferedReader(new InputStreamReader(is));
         List<String> lines = new ArrayList<String>();
         String line;

@@ -62,7 +62,6 @@ public class ClientBrowser // extends AbstractClientBrowserChild
     {
         if (_applicationUI == null)
         {
-            getLoginUI().loginIfNotLoggedIn("usr7778899@gmail.com", "testPass456!##");
             _applicationUI = new HomeUI(this);
         }
         return _applicationUI;
@@ -356,7 +355,7 @@ public class ClientBrowser // extends AbstractClientBrowserChild
 
         switch (browserBasedTime)
         {
-            // wait for control to appear in a normal UI
+        // wait for control to appear in a normal UI
             case WAIT_FOR_CONTROL_IN_UI:
                 timeInSeconds = 5;
                 break;

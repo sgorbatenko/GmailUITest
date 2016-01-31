@@ -12,7 +12,7 @@ import com.stan.task.test.framework.model.UiObject;
 
 public abstract class DataProvider
 {
-    public static final String TESTDATA_CATALOG = "";// "./src/test/resources/localization/";
+    public static final String TESTDATA_CATALOG = "/localization/";
 
     private UiObject _ui;
 

@@ -12,13 +12,11 @@ import com.stan.task.test.framework.localization.dataprovider.TestEntity;
 public class BasicLocalizationTest extends AbstractLocalizationTest
 {
     @Test(dataProviderClass = DataProvider.class, dataProvider = "getExpectedEntities")
-    @DataProviderArguments("filePath=/Users/sgorbatenko/Projects/GmailUITest/src/test/resources/localization/HomePage.csv")
+    @DataProviderArguments("filePath=/HomePage.csv")
     public void testLoacalizationOnHomePage(TestEntity entity)
     {
-        DataProvider provider = new HomePageProvider();
+        DataProvider provider = new HomePageProvider(_homeUi);
         Utils.verifyMapsAreEqual(entity.getExpectedData(),
             provider.provideActualResult(entity));
     }
 }
-
-

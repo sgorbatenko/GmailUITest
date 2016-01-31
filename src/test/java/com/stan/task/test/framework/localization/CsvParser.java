@@ -33,7 +33,7 @@ public class CsvParser
             {
                 String[] strArr = lines.get(lineIndex).split(cvsSplitBy);
                 key = strArr[0];
-                expectedValueByName.put(key, strArr[currentLangIndex + 1]);
+                expectedValueByName.put(key, strArr[currentLangIndex]);
             }
             langTestEntity.setExpectedData(expectedValueByName);
             testEntities.add(langTestEntity);

@@ -10,7 +10,7 @@ import java.util.Map;
 import com.stan.task.test.framework.localization.CsvParser;
 import com.stan.task.test.framework.model.UiObject;
 
-public abstract class DataProvider
+public abstract class DataProvider implements Localization
 {
     public static final String TESTDATA_CATALOG = "/localization/";
 
@@ -46,11 +46,18 @@ public abstract class DataProvider
 
     public Map<String, String> provideActualResult(TestEntity entity)
     {
-        UiObject ui = getUiObject();// (entity.getData());
+        UiObject ui = getUiObject();
         Map<String, String> actualValues = new LinkedHashMap<>();
         for (String property : entity.getExpectedData().keySet())
         {
-            actualValues.put(property, getValueFromUI(ui, property));
+            if (property.equals(LANGUAGE))
+            {
+                actualValues.put(property, entity.getExpectedData().get(property));
+            }
+            else
+            {
+                actualValues.put(property, getValueFromUI(ui, property));
+            }
         }
 
         return actualValues;

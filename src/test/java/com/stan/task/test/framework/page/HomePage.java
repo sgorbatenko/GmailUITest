@@ -29,11 +29,11 @@ public class HomePage extends AbstractPage
     @FindBy(css = "div[role='button'][gh='cm']")
     private Button _composeBtn;
 
-    @TestName(testName = "Inbox Link")
+    @TestName(testName = "Inbox link")
     @FindBy(css = "div[role='navigation']  a[href*='inbox']")
     private Element _inboxLink;
 
-    @TestName(testName = "Inbox Grid")
+    @TestName(testName = "Inbox grid")
     @FindBy(css = ".BltHke:not([style='display: none;']) table.F")
     private SimpleGrid _inboxGrid;
 

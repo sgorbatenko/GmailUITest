@@ -4,10 +4,10 @@ package com.stan.task.test;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
-import com.stan.task.test.framework.BrowserName;
-import com.stan.task.test.framework.BrowserType;
-import com.stan.task.test.framework.ClientBrowser;
-import com.stan.task.test.framework.pagefactory.TestEnvironment;
+import com.stan.task.framework.BrowserName;
+import com.stan.task.framework.BrowserType;
+import com.stan.task.framework.ClientBrowser;
+import com.stan.task.framework.pagefactory.TestEnvironment;
 
 /**
  * The AbstractSeleniumTest Class, base class for nearly all tests with common

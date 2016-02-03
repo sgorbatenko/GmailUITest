@@ -3,11 +3,11 @@ package com.stan.task.test.localization;
 
 import org.testng.annotations.Test;
 
-import com.stan.task.test.framework.localization.Utils;
-import com.stan.task.test.framework.localization.dataprovider.DataProvider;
-import com.stan.task.test.framework.localization.dataprovider.DataProviderArguments;
-import com.stan.task.test.framework.localization.dataprovider.Localization;
-import com.stan.task.test.framework.localization.dataprovider.TestEntity;
+import com.stan.task.framework.localization.Utils;
+import com.stan.task.framework.localization.dataprovider.DataProvider;
+import com.stan.task.framework.localization.dataprovider.DataProviderArguments;
+import com.stan.task.framework.localization.dataprovider.Localization;
+import com.stan.task.framework.localization.dataprovider.TestEntity;
 
 public class BasicLocalizationTest extends AbstractLocalizationTest
 {

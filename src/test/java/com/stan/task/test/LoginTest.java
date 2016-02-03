@@ -7,9 +7,9 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import com.stan.task.test.framework.data.User;
-import com.stan.task.test.framework.model.LoginUI;
-import com.stan.task.test.framework.utils.Wait;
+import com.stan.task.framework.data.User;
+import com.stan.task.framework.model.LoginUI;
+import com.stan.task.framework.utils.Wait;
 
 public class LoginTest extends AbstractSeleniumTest
 {

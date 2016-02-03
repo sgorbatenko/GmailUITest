@@ -5,8 +5,8 @@ import java.util.concurrent.TimeUnit;
 
 import org.testng.annotations.BeforeClass;
 
+import com.stan.task.framework.model.HomeUI;
 import com.stan.task.test.AbstractSeleniumTest;
-import com.stan.task.test.framework.model.HomeUI;
 
 public abstract class AbstractLocalizationTest extends AbstractSeleniumTest
 {

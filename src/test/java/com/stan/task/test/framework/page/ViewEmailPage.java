@@ -38,16 +38,8 @@ public class ViewEmailPage extends AbstractPage
         return _body;
     }
 
-
     public ViewEmailPage(ClientBrowser clientBrowser)
     {
         ExtendedPageFactory.initElements(clientBrowser, this);
-    }
-
-    @Override
-    void populateUiControls()
-    {
-        // TODO-SG Auto-generated method stub
-
     }
 }

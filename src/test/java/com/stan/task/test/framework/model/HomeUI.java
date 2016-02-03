@@ -13,11 +13,12 @@ public class HomeUI implements UiObject
     private final ClientBrowser _parentClientBrowser;
 
     // Physical pages
-    private HomePage _mainPage;
+    private HomePage _homePage;
 
     // UI entities
     private Deque<NewMessageUI> _newMessages = new LinkedList<NewMessageUI>();
     private EmailViewUI _emailViewUI;
+    private SettingsUi _settingsUi;
 
     public HomeUI(ClientBrowser parentClientBrowser)
     {
@@ -27,12 +28,12 @@ public class HomeUI implements UiObject
     @Override
     public HomePage getPage()
     {
-        if (_mainPage == null)
+        if (_homePage == null)
         {
-            _mainPage = new HomePage(_parentClientBrowser);
+            _homePage = new HomePage(_parentClientBrowser);
         }
 
-        return _mainPage;
+        return _homePage;
     }
 
     public EmailViewUI getEmailViewUI(Email e)
@@ -40,6 +41,15 @@ public class HomeUI implements UiObject
         clickRowWithText(e.getSubject());
         _emailViewUI = new EmailViewUI(_parentClientBrowser);
         return _emailViewUI;
+    }
+
+    public SettingsUi getSettingsUi()
+    {
+        if (_settingsUi == null)
+        {
+            _settingsUi = new SettingsUi(_parentClientBrowser);
+        }
+        return _settingsUi;
     }
 
     public boolean isUserLoggedIn()

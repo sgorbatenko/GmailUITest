@@ -53,10 +53,4 @@ public class NewMessagePage extends AbstractPage
         ExtendedPageFactory.initElements(clientBrowser, this);
     }
 
-    @Override
-    void populateUiControls()
-    {
-        // TODO-SG Auto-generated method stub
-
-    }
 }

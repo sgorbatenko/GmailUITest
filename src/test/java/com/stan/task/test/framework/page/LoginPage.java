@@ -70,12 +70,6 @@ public final class LoginPage extends AbstractPage
         return _nextButton;
     }
 
-    @Override
-    void populateUiControls()
-    {
-        // TODO-SG Auto-generated method stub
-
-    }
 
     // /**
     // * Gets the login button.

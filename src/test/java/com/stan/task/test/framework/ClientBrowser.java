@@ -355,7 +355,7 @@ public class ClientBrowser // extends AbstractClientBrowserChild
 
         switch (browserBasedTime)
         {
-        // wait for control to appear in a normal UI
+            // wait for control to appear in a normal UI
             case WAIT_FOR_CONTROL_IN_UI:
                 timeInSeconds = 5;
                 break;
@@ -453,6 +453,33 @@ public class ClientBrowser // extends AbstractClientBrowserChild
     {
         waitForElementPresent(element, Wait.TIMEOUT_INTERACTION);
     }
+
+
+    public void waitForElementNotPresent(final Element element, long timeout)
+    {
+        for (ElementLocator elementLocator : element.getLocatorsList())
+        {
+            final By locator = elementLocator.toSeleniumByLocator();
+            try
+            {
+                WebDriverWait w = new WebDriverWait(getSeleniumWebDriver(), timeout);
+                w.until(new BrowserExpectedConditions.ElementNotPresent(locator));
+
+                return;
+            }
+            catch (TimeoutException e)
+            {
+
+            }
+        }
+        throw new TimeoutException("Able to find element using locator");
+    }
+
+    public void waitForElementNotPresent(final Element element)
+    {
+        waitForElementNotPresent(element, Wait.TIMEOUT_INTERACTION);
+    }
+
 
     /**
      * Wait for element enabled. Low-level Legacy method - do not use for new coding

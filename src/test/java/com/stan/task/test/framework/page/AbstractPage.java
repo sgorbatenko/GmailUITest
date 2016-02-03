@@ -16,20 +16,12 @@ public abstract class AbstractPage
     Map<String, Element> _uiControls = new HashMap();
     private boolean _populatingControls;
 
-    abstract void populateUiControls();
-
-//    public Element getUiControl(String controlName)
-//    {
-//        return _uiControls.get(controlName);
-//    }
-
     public void addUiControl(Element el)
     {
         _uiControls.put(el.getName(), el);
     }
 
-
-    public final Map<String, Element> getControls() throws Exception
+    public final Map<String, Element> getUiControls() throws Exception
     {
         if (_uiControls.isEmpty() && !_populatingControls)
         {
@@ -37,7 +29,7 @@ public abstract class AbstractPage
 
             try
             {
-                populateControls();
+                populateUiControls();
             }
             finally
             {
@@ -49,11 +41,11 @@ public abstract class AbstractPage
     }
 
     /**
-     * Protected method Populate controls
-     * 
+     * Protected method Populate controls if not specifically defined in the page class
+     *
      * @throws Exception
      */
-    protected void populateControls() throws Exception
+    protected void populateUiControls() throws Exception
     {
         Field[] fields = this.getClass().getDeclaredFields();
         for (Field field : fields)
@@ -79,7 +71,7 @@ public abstract class AbstractPage
 
     public final void addControl(Element control) throws Exception
     {
-        Map<String, Element> controls = getControls();
+        Map<String, Element> controls = getUiControls();
 
         if (controls.containsKey(control.getName()))
         {
@@ -92,12 +84,12 @@ public abstract class AbstractPage
 
     public boolean hasControl(String name) throws Exception
     {
-        return getControls().containsKey(name);
+        return getUiControls().containsKey(name);
     }
 
     public final Element getUiControl(String name) throws Exception
     {
-        Element control = getControls().get(name);
+        Element control = getUiControls().get(name);
         if (control == null)
         {
             throw new NoSuchControlException("Page does not have control '" + name + "'");

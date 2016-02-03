@@ -10,27 +10,23 @@ import java.util.Map;
 import com.stan.task.test.framework.localization.CsvParser;
 import com.stan.task.test.framework.model.UiObject;
 
-public abstract class DataProvider implements Localization
+public class DataProvider implements Localization
 {
-    public static final String TESTDATA_CATALOG = "/localization/";
-
     private UiObject _ui;
 
-    public abstract UiObject getUiObject();
+    public UiObject getUiObject()
+    {
+        return _ui;
+    }
 
     protected DataProvider()
     {
         super();
     }
 
-    protected DataProvider(UiObject ui)
+    public DataProvider(UiObject ui)
     {
         _ui = ui;
-    }
-
-    protected UiObject getUi()
-    {
-        return _ui;
     }
 
     protected void setUi(UiObject ui)
@@ -41,7 +37,7 @@ public abstract class DataProvider implements Localization
     public static List<TestEntity> provideTestEntities(String filePath) throws IOException
     {
         CsvParser csvParser = new CsvParser();
-        return csvParser.getTestEntites(DataProvider.TESTDATA_CATALOG + filePath);
+        return csvParser.getTestEntites(Localization.TESTDATA_CATALOG + filePath);
     }
 
     public Map<String, String> provideActualResult(TestEntity entity)

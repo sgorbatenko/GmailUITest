@@ -37,6 +37,22 @@ public class HomePage extends AbstractPage
     @FindBy(css = ".BltHke:not([style='display: none;']) table.F")
     private SimpleGrid _inboxGrid;
 
+    @TestName(testName = "Starred link")
+    @FindBy(css = "div[role='navigation']  a[href*='starred']")
+    private Element _starredLink;
+
+    @TestName(testName = "Important link")
+    @FindBy(css = "div[role='navigation']  a[href*='imp']")
+    private Element _importantLink;
+
+    @TestName(testName = "Sent Mail link")
+    @FindBy(css = "div[role='navigation']  a[href*='sent']")
+    private Element _sentMailLink;
+
+    @TestName(testName = "Drafts link")
+    @FindBy(css = "div[role='navigation']  a[href*='drafts']")
+    private Element _draftsLink;
+
     public HomePage(ClientBrowser clientBrowser)
     {
         ExtendedPageFactory.initElements(clientBrowser, this);
@@ -72,13 +88,37 @@ public class HomePage extends AbstractPage
         return _inboxGrid;
     }
 
+    public Element getStarredLink()
+    {
+        return _starredLink;
+    }
+
+    public Element getImportantLink()
+    {
+        return _importantLink;
+    }
+
+    public Element getSentMailLink()
+    {
+        return _sentMailLink;
+    }
+
+    public Element getDraftsLink()
+    {
+        return _draftsLink;
+    }
+
     @Override
-    void populateUiControls()
+    protected void populateUiControls()
     {
         addUiControl(getInboxGrid());
         addUiControl(getAccountBtn());
         addUiControl(getComposeBtn());
         addUiControl(getInboxLink());
         addUiControl(getSignOutBtn());
+        addUiControl(getStarredLink());
+        addUiControl(getImportantLink());
+        addUiControl(getSentMailLink());
+        addUiControl(getDraftsLink());
     }
 }

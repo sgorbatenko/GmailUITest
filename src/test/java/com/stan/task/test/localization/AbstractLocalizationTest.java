@@ -7,7 +7,6 @@ import org.testng.annotations.BeforeClass;
 
 import com.stan.task.test.AbstractSeleniumTest;
 import com.stan.task.test.framework.model.HomeUI;
-import com.stan.task.test.framework.utils.Wait;
 
 public abstract class AbstractLocalizationTest extends AbstractSeleniumTest
 {
@@ -16,10 +15,16 @@ public abstract class AbstractLocalizationTest extends AbstractSeleniumTest
     @BeforeClass
     public void setup()
     {
-        getClientBrowser().getSeleniumWebDriver().manage().timeouts().implicitlyWait(Wait.TIMEOUT_MIN_WAIT,
-            TimeUnit.SECONDS);
+        getClientBrowser().getSeleniumWebDriver().manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         getClientBrowser().getLoginUI().login("usr7778899@gmail.com", "testPass456!##");
         _homeUi = getClientBrowser().getApplicationUI();
     }
 
+    protected void changeLanguage(String lang) throws InterruptedException
+    {
+        _homeUi.getSettingsUi().open().setLanguage(lang);
+        _homeUi.getSettingsUi().getPage().getSaveBtn().click();
+        /// TO-DO: Replace with implicit wait
+        Thread.sleep(2000);
+    }
 }

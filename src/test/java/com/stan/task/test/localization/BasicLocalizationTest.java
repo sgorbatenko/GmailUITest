@@ -6,17 +6,19 @@ import org.testng.annotations.Test;
 import com.stan.task.test.framework.localization.Utils;
 import com.stan.task.test.framework.localization.dataprovider.DataProvider;
 import com.stan.task.test.framework.localization.dataprovider.DataProviderArguments;
-import com.stan.task.test.framework.localization.dataprovider.HomePageProvider;
+import com.stan.task.test.framework.localization.dataprovider.Localization;
 import com.stan.task.test.framework.localization.dataprovider.TestEntity;
 
 public class BasicLocalizationTest extends AbstractLocalizationTest
 {
     @Test(dataProviderClass = DataProvider.class, dataProvider = "getExpectedEntities")
     @DataProviderArguments("filePath=/HomePage.csv")
-    public void testLoacalizationOnHomePage(TestEntity entity)
+    public void testLoacalizationOnHomePage(TestEntity entity) throws InterruptedException
     {
-        DataProvider provider = new HomePageProvider(_homeUi);
+        changeLanguage(entity.getExpectedData().get(Localization.LANGUAGE));
+        DataProvider provider = new DataProvider(_homeUi);
         Utils.verifyMapsAreEqual(entity.getExpectedData(),
             provider.provideActualResult(entity));
     }
+
 }

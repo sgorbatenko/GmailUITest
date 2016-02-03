@@ -43,7 +43,7 @@ public class ExtendedFieldDecorator extends DefaultFieldDecorator
                 return null;
             }
 
-            TestNameAnnotation testAnnotation = new TestNameAnnotation(field);
+            ControlNameAnnotation testAnnotation = new ControlNameAnnotation(field);
             String testName = testAnnotation.buildTestName();
 
             WebElement element = proxyForLocator(loader, locator);

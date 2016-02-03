@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import com.stan.task.framework.ClientBrowser;
 import com.stan.task.framework.control.Element;
 import com.stan.task.framework.pagefactory.ExtendedPageFactory;
-import com.stan.task.framework.pagefactory.TestName;
+import com.stan.task.framework.pagefactory.ControlName;
 
 public class ViewEmailPage extends AbstractPage
 {
@@ -14,11 +14,11 @@ public class ViewEmailPage extends AbstractPage
     // @FindBy(name = "to")
     // private TextArea _toTxt;
 
-    @TestName(testName = "Subject area")
+    @ControlName(name = "Subject area")
     @FindBy(css = "h2.hP")
     private Element _subject;
 
-    @TestName(testName = "Body area")
+    @ControlName(name = "Body area")
     @FindBy(css = "div.nH.aHU div[dir='ltr']")
     private Element _body;
 

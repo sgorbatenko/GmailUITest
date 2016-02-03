@@ -7,26 +7,26 @@ import com.stan.task.framework.ClientBrowser;
 import com.stan.task.framework.control.Button;
 import com.stan.task.framework.control.TextBox;
 import com.stan.task.framework.pagefactory.ExtendedPageFactory;
-import com.stan.task.framework.pagefactory.TestName;
+import com.stan.task.framework.pagefactory.ControlName;
 
 /**
  * The LoginPage Class.
  */
 public final class LoginPage extends AbstractPage
 {
-    @TestName(testName = "Email")
+    @ControlName(name = "Email")
     @FindBy(name = "Email")
     private TextBox _emailTextBox;
 
-    @TestName(testName = "Password")
+    @ControlName(name = "Password")
     @FindBy(name = "Passwd")
     private TextBox _passwordTextBox;
 
-    @TestName(testName = "Next")
+    @ControlName(name = "Next")
     @FindBy(name = "signIn")
     private Button _nextButton;
 
-    @TestName(testName = "Login")
+    @ControlName(name = "Login")
     @FindBy(id = "signIn")
     private Button _signInButton;
 

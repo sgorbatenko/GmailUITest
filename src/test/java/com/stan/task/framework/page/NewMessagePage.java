@@ -8,23 +8,23 @@ import com.stan.task.framework.ClientBrowser;
 import com.stan.task.framework.control.TextArea;
 import com.stan.task.framework.control.TextBox;
 import com.stan.task.framework.pagefactory.ExtendedPageFactory;
-import com.stan.task.framework.pagefactory.TestName;
+import com.stan.task.framework.pagefactory.ControlName;
 
 public class NewMessagePage extends AbstractPage
 {
-    @TestName(testName = "To textbox")
+    @ControlName(name = "To textbox")
     @FindBy(name = "to")
     private TextArea _toTxt;
 
-    @TestName(testName = "Subject textbox")
+    @ControlName(name = "Subject textbox")
     @FindBy(name = "subjectbox")
     private TextBox _subjectTxt;
 
-    @TestName(testName = "Body texarea")
+    @ControlName(name = "Body texarea")
     @FindBy(css = "div[aria-label='Message Body']")
     private WebElement _bodyTxt;
 
-    @TestName(testName = "Send button")
+    @ControlName(name = "Send button")
     @FindBy(css = "div[aria-label*='Send']")
     private WebElement _sendBtn;
 

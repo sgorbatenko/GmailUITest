@@ -7,15 +7,15 @@ import com.stan.task.framework.ClientBrowser;
 import com.stan.task.framework.control.Button;
 import com.stan.task.framework.control.Element;
 import com.stan.task.framework.pagefactory.ExtendedPageFactory;
-import com.stan.task.framework.pagefactory.TestName;
+import com.stan.task.framework.pagefactory.ControlName;
 
 public class SettingsPage extends AbstractPage
 {
-    @TestName(testName = "Language select")
+    @ControlName(name = "Language select")
     @FindBy(css = "select.a5p")
     private Element _langSelect;
 
-    @TestName(testName = "Save button")
+    @ControlName(name = "Save button")
     @FindBy(css = "button[guidedhelpid='save_changes_button']")
     private Button _saveBtn;
 

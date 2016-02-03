@@ -4,12 +4,12 @@ package com.stan.task.framework.pagefactory;
 import java.lang.reflect.Field;
 
 
-public class TestNameAnnotation
+public class ControlNameAnnotation
 {
 
     private final Field _field;
 
-    public TestNameAnnotation(Field field)
+    public ControlNameAnnotation(Field field)
     {
         this._field = field;
     }
@@ -17,11 +17,11 @@ public class TestNameAnnotation
     public String buildTestName()
     {
 
-        TestName description = _field.getAnnotation(TestName.class);
+        ControlName description = _field.getAnnotation(ControlName.class);
 
         if (description != null)
         {
-            return description.testName();
+            return description.name();
         }
 
         return null;
